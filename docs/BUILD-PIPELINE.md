@@ -49,7 +49,7 @@ This document provides a high-level overview of the portfolio build pipeline, in
 
 ## Documentation Sync Automation
 
-A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy/deploy-support/utils/sync-public-docs.sh`) before every push. This ensures that public documentation is always up to date and secure, without requiring manual steps.
+A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy/deploy-support/utils/sync-public-docs.sh`) before every push. This ensures that all public documentation in the `DOCS/` and root-level `.md` files are always up to date and secure, without requiring manual steps.
 
 - **Location:** `.git/hooks/pre-push`
 - **Behavior:** Runs the sync script and blocks the push if the sync fails.

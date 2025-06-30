@@ -47,6 +47,20 @@ This document provides a high-level overview of the portfolio build pipeline, in
 [Footer Inject] → [Pre-Deploy Checks] → [Preview Server]
 ```
 
+## Documentation Sync Automation
+
+A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy/deploy-support/utils/sync-public-docs.sh`) before every push. This ensures that public documentation is always up to date and secure, without requiring manual steps.
+
+- **Location:** `.git/hooks/pre-push`
+- **Behavior:** Runs the sync script and blocks the push if the sync fails.
+- **How it works:**
+  1. You commit as usual.
+  2. On `git push`, the sync script runs automatically.
+  3. If the sync passes, the push proceeds. If not, the push is blocked and you see an error message.
+- **To disable or customize:** Edit or remove `.git/hooks/pre-push`.
+
+This workflow eliminates the need to remember to sync docs manually and ensures your public documentation is always current and safe.
+
 ## See Also
 - [SCRIPTS.md](SCRIPTS.md) for details on each script
 - [docs/simplified-workflow-guide.md](docs/simplified-workflow-guide.md) for a step-by-step workflow

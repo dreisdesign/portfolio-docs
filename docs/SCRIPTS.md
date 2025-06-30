@@ -1,0 +1,59 @@
+# Portfolio Build System Scripts
+
+This document describes the main scripts and utilities that power the portfolio build system. For most users, the interactive menu (`npm run menu`) is the easiest way to access these features.
+
+## Core Scripts
+
+- **00-validate-html.mjs**
+  - Validates HTML structure, metadata, and accessibility.
+  - Updates timestamps in HTML and CSS files.
+
+- **01-process-images.mjs**
+  - Optimizes, resizes, and sharpens images for web delivery.
+
+- **02-create-static-placeholder.mjs**
+  - Generates static placeholder images for loading/fallback.
+
+- **03-preprocess-featured-images.mjs**
+  - Prepares all responsive sizes for featured images.
+
+- **04-format-files.sh**
+  - Formats HTML, CSS, and JSON files.
+  - Minifies CSS and injects head elements.
+
+- **05-transform-responsive-images.mjs**
+  - Updates image tags for responsive delivery (`srcset`, `sizes`).
+
+- **06-build-portfolio.mjs**
+  - Main build coordinator: processes portfolio pages, injects navigation, logos, tags, carousels, and generates index/tag pages.
+
+- **head-templates/inject-head.mjs**
+  - Injects common HTML head elements and scripts.
+
+- **inject-footer.mjs**
+  - Ensures a single, correctly placed footer in every HTML file.
+
+- **07-pre-deploy-check.sh**
+  - Runs final checks before deployment.
+
+- **08-preview-server.mjs**
+  - Starts a local server for previewing the build.
+
+## Utilities
+
+- **audit.mjs**
+  - Unified audit, comparison, and baseline update tool.
+  - Usage: `node dev/scripts/deploy/deploy-support/utils/audit.mjs [options]`
+
+- **insert-section.mjs & insert-section.sh**
+  - Interactive utility for inserting prebuilt HTML sections (image, video, carousel) into any HTML file.
+
+- **scrape-site-content.mjs**
+  - Extracts text content from the live site for analysis or migration.
+
+- **sync-public-docs.sh**
+  - Syncs documentation from the private repo to the public docs repo, with security checks.
+
+## See Also
+- [BUILD-PIPELINE.md](BUILD-PIPELINE.md) for the build process overview
+- [docs/](docs/) for in-depth guides and feature documentation

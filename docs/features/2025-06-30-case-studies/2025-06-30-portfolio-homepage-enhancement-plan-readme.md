@@ -1,3 +1,0 @@
-# 2025-06-30-portfolio-homepage-enhancement-plan-readme
-
-...existing content...

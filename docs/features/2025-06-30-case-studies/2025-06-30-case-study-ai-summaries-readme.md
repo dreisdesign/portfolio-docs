@@ -1,3 +1,0 @@
-# 2025-06-30-case-study-ai-summaries-readme
-
-...existing content...

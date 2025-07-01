@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.9] - 2025-07-01 - Audit Log Auto-Archiving & Baseline Handling
+
+### Added
+- **Audit Log Auto-Archiving**: The audit script now automatically moves all but the 5 most recent audit files (plus the baseline) into the `_archive` folder within `dev/logs/audit/` after each run. This keeps the main audit folder clean and ensures the baseline is always retained.
+- **Baseline Always Retained**: The baseline audit file is never archived, even if it is not among the 5 most recent.
+
+### Changed
+- **Audit Script**: Updated `audit.mjs` to include the new auto-archiving logic and improved baseline handling.
+- **Documentation**: Updated README and workflow documentation to reflect the new audit log management system.
+
+### Technical Details
+- See `dev/scripts/deploy/deploy-support/utils/audit.mjs` for the archiving logic.
+- Audit logs are now managed automatically; no manual cleanup required.
+
 ## [2.5.8] - 2025-06-30 - Portfolio Tag Display Refactor & Configurability
 
 ### Changed

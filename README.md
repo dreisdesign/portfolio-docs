@@ -1,18 +1,22 @@
 # Portfolio System: Table of Contents & Authoring Guide
 
-**Updated: June 30, 2025**
+**Updated: July 1, 2025**
 
 ## Overview
-This project is a modern, maintainable UX portfolio system for Dan Reis. It features a robust build pipeline with git-based change detection, comprehensive portfolio tagging system, automated navigation and head injection, dynamic company logo injection, automatic image dimension injection, pixel-perfect zoomable image functionality, a simplified authoring workflow for carousels and content, and a fully automated tag row layout (including '+ More' tag spacer logic).
+This project is a modern, maintainable UX portfolio system for Dan Reis. It features a robust build pipeline with git-based change detection, comprehensive portfolio tagging system, automated navigation and head injection, dynamic company logo injection, automatic image dimension injection, pixel-perfect zoomable image functionality, a simplified authoring workflow for carousels and content, a fully automated tag row layout (including '+ More' tag spacer logic), and now automatic audit log archiving.
 
-### Current Status (June 30, 2025)
+### Current Status (July 1, 2025)
+- ✅ **Audit Log Auto-Archiving**: The audit script now automatically moves all but the 5 most recent audit files (plus the baseline) into the `_archive` folder within `dev/logs/audit/` after each run. The baseline audit is always retained in the main folder.
 - ✅ **Color System Finalized**: All color usage is now centralized and modernized with CSS variables. Legacy/duplicate color values and documentation removed.
 - ✅ **Automated '+ More' Tag Placement**: '+ More' tag placement is now fully automated in the build system for consistent tag row layout.
 - ✅ **Emoji System & Quick Links**: Emoji system and build/preview quick links are documented for contributors in `.github/prompts/prompt.prompt.md`.
 - ✅ **Feature Docs Organized**: All feature, audit, and idea docs are organized in a dated feature folder structure.
 - ✅ **UI/UX Improvements**: Zoomable image overlays and tag/card layout improvements are complete
 
-### Latest (June 30, 2025)
+### Latest (July 1, 2025)
+- ✅ **Audit Log Auto-Archiving**: The audit script now keeps only the 5 most recent audit logs (plus the baseline) in `dev/logs/audit/`, moving older logs to `_archive` automatically. No manual cleanup required.
+- ✅ **Baseline Audit Always Retained**: The baseline audit file is never archived, even if it is not among the 5 most recent.
+- ✅ **Documentation Updated**: This README and the changelog now reflect the new audit log management system.
 - ✅ **Automatic Image Dimension Injection**: Revolutionary improvement to developer experience and performance
   - Build system automatically reads image metadata using Sharp and injects width/height attributes
   - 270 manual dimension attributes removed from source HTML files for cleaner, more maintainable code

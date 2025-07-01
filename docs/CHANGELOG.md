@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.10] - 2025-07-01 - Layout Padding Update
+
+### Changed
+- Updated `.wrapper` padding in `main-layout.css` to use left/right shorthand (`padding: 0 20px;`) for improved layout consistency and clarity.
+
 ## [2.5.9] - 2025-07-01 - Audit Log Auto-Archiving & Baseline Handling
 
 ### Added
@@ -309,7 +314,9 @@ Successfully optimized portfolio videos with 50-84% file size reductions:
   - Achieved perfect alignment between Summary and main content sections on mobile, tablet, and desktop
   - Eliminated fluid stretching behavior in favor of consistent, structured padding
 
-## [Unreleased]
+## [Unreleased] - 2025-07-01
+### Changed
+- Updated `.wrapper` padding in `main-layout.css` to use left/right shorthand (`padding: 0 20px;`) for improved layout consistency and clarity.
 
 ### Added
 - **Dynamic Company Logo Injection System**: Automated company logo injection for portfolio pages

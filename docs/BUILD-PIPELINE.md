@@ -34,6 +34,12 @@ This document provides a high-level overview of the portfolio build pipeline, in
      - The build script injects dynamic content only; no hardcoded HTML remains.
      - If a template is missing, the build fails with a clear error.
      - To update tag page layout or styles, edit the relevant template file and rebuild.
+   - The tag listing template (`tag-listing-template.html`) is now fully aligned with the main portfolio index page in:
+     - Stylesheet order and usage (uses only `main.min.css` and `page-portfolio.css`)
+     - Script placement (`portfolio-session.js` after cards)
+     - `.wrapper` and section structure
+     - Body class (`portfolio-index`)
+   - This ensures tag listing pages are visually and structurally identical to the main index, except for tag-specific content.
 
 8. **Footer Injection** (`inject-footer.mjs`)
    - Ensures a single, correctly placed footer in every HTML file.

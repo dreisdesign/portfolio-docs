@@ -30,6 +30,7 @@ This document describes the main scripts and utilities that power the portfolio 
     - Templates: `build-portfolio-templates/tag-index-template.html` and `build-portfolio-templates/tag-listing-template.html`
     - No hardcoded HTML for tag pages in the script—if a template is missing, the build fails.
     - To change tag page layout or style, edit the template and rebuild.
+    - The tag listing template is now fully aligned with the main portfolio index page in terms of stylesheet order, script placement, wrapper structure, and body class. This ensures visual and structural consistency across all portfolio pages.
 
 - **head-templates/inject-head.mjs**
   - Injects common HTML head elements and scripts.

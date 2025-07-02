@@ -31,6 +31,7 @@ This document describes the main scripts and utilities that power the portfolio 
     - No hardcoded HTML for these components in the script—if a template is missing, the build fails.
     - To change component layout or style, edit the template and rebuild.
     - The tag listing template is now fully aligned with the main portfolio index page in terms of stylesheet order, script placement, wrapper structure, and body class. This ensures visual and structural consistency across all portfolio pages.
+  - **Automated Version Replacement:** At the end of the build, all `{{VERSION}}` tokens in HTML output are replaced with the version from `package.json`.
 
 - **inject-head-upper.mjs**
   - Injects the upper portion of the HTML head (essential meta tags, charset, viewport, etc.) into all HTML files at the `<!-- BUILD_INSERT id="head-upper" -->` placeholder, using the `injected-head-upper.html` template.

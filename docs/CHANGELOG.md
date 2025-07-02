@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.14] - 2025-07-02 - Automated Version Token Replacement
+
+### Added
+- **Automated `{{VERSION}}` Replacement**: The build script now automatically replaces all `{{VERSION}}` tokens in HTML output with the version from `package.json` after all other build steps. This ensures correct cache-busting and versioning for all assets, including the homepage.
+
 ## [2.5.13] - 2025-07-02 - Modular Carousel & "Up Next" Card Refactor
 
 ### Changed

@@ -42,6 +42,7 @@ This project is a modern, maintainable UX portfolio system for Dan Reis. It feat
 - ✅ **Color Variable System**: All colors in the portfolio system are now managed using CSS custom properties (variables) for maximum maintainability and theme flexibility
   - Centralized color definitions in `public_html/styles/_variables.css`
   - Example usage: `background: var(--color-primary);`
+- ✅ **Automated Version Token Replacement**: All `{{VERSION}}` tokens in HTML output are now automatically replaced with the version from `package.json` at the end of the build. No manual steps required; ensures cache-busting and version consistency for all assets.
 
 ### Previous Updates (January 7, 2025)
 - ✅ **Complete Layout & Spacing Overhaul**: Achieved perfect consistency across all portfolio pages

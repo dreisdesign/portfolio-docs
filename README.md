@@ -37,7 +37,7 @@ This project is a modern, maintainable UX portfolio system for Dan Reis. It feat
 - ✅ **Preview Automation**: One-liner and npm script for building and previewing any page
   - Example: `npm run build && PAGE=/portfolio/tags/your-tag-slug/ npm run preview:page`
 - ✅ **Body Background Fix**: Forced offwhite background for `.portfolio-index` and `.portfolio-tag-page` to override global styles
-- ✅ **Card Styling**: All `.card` elements are white with consistent border radius and shadow
+- ✅ **Card Styling Unified & Inline Styles Removed**: All card appearance and interactivity (box-shadow, border, transitions, :hover/:active effects) are now handled exclusively by external CSS (`content-card.css`). No inline `style` attributes are used on any `.card` elements (portfolio index, tag pages, or "Up Next" cards). This ensures consistent, maintainable card styling across all card types and pages.
 - ✅ **Color Variable System**: All colors in the portfolio system are now managed using CSS custom properties (variables) for maximum maintainability and theme flexibility
   - Centralized color definitions in `public_html/styles/_variables.css`
   - Example usage: `background: var(--color-primary);`
@@ -830,3 +830,11 @@ background: rgba(var(--color-accent-rgb), 0.1); /* Tag hover */
 - All previous hardcoded color values have been replaced with variables.
 - Build scripts and templates have been updated to output CSS using these variables.
 - This system enables easy theming and consistent color usage across all components.
+
+### Card Styling System
+All card appearance and interactive styles (box-shadow, border, transitions, :hover/:active effects) are handled exclusively by external CSS in `public_html/styles/content-card.css`. No inline `style` attributes are used on any `.card` elements—this applies to portfolio index, tag pages, and "Up Next" cards. This approach ensures:
+- Visual and interactive consistency across all card types and pages
+- Easier maintenance and future updates
+- Clean, semantic HTML output from the build system
+
+If you need to update card appearance or interactivity, make changes only in `content-card.css`. The build script (`06-build-portfolio.mjs`) will not generate any inline card styles.

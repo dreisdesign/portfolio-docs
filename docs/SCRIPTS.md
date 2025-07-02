@@ -26,6 +26,10 @@ This document describes the main scripts and utilities that power the portfolio 
 
 - **06-build-portfolio.mjs**
   - Main build coordinator: processes portfolio pages, injects navigation, logos, tags, carousels, and generates index/tag pages.
+  - **Tag index and tag pages are now 100% template-driven.**
+    - Templates: `build-portfolio-templates/tag-index-template.html` and `build-portfolio-templates/tag-listing-template.html`
+    - No hardcoded HTML for tag pages in the script—if a template is missing, the build fails.
+    - To change tag page layout or style, edit the template and rebuild.
 
 - **head-templates/inject-head.mjs**
   - Injects common HTML head elements and scripts.

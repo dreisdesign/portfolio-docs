@@ -19,7 +19,7 @@ This document describes the main scripts and utilities that power the portfolio 
 
 - **04-format-files.sh**
   - Formats HTML, CSS, and JSON files.
-  - Minifies CSS and injects head elements.
+  - Minifies CSS.
 
 - **05-transform-responsive-images.mjs**
   - Updates image tags for responsive delivery (`srcset`, `sizes`).
@@ -32,8 +32,12 @@ This document describes the main scripts and utilities that power the portfolio 
     - To change tag page layout or style, edit the template and rebuild.
     - The tag listing template is now fully aligned with the main portfolio index page in terms of stylesheet order, script placement, wrapper structure, and body class. This ensures visual and structural consistency across all portfolio pages.
 
-- **head-templates/inject-head.mjs**
-  - Injects common HTML head elements and scripts.
+- **inject-head-upper.mjs**
+  - Injects the upper portion of the HTML head (essential meta tags, charset, viewport, etc.) into all HTML files at the `<!-- BUILD_INSERT id="head-upper" -->` placeholder, using the `injected-head-upper.html` template.
+
+- **inject-head-lower.mjs**
+  - Injects the lower portion of the HTML head (fonts, favicons, CSS, versioning, and portfolio scripts) into all HTML files at the `<!-- BUILD_INSERT id="head-lower" -->` placeholder, using the `injected-head-lower.html` template.
+  - Handles dynamic versioning and portfolio-specific script injection.
 
 - **inject-footer.mjs**
   - Ensures a single, correctly placed footer in every HTML file.

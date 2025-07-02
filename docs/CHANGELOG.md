@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.12] - 2025-07-02 - Modular Head Injection Refactor
+
+### Changed
+- Refactored the build pipeline to use a modular, template-driven head injection system.
+- The HTML head is now split into upper and lower parts, managed in `injected-head-upper.html` and `injected-head-lower.html`.
+- New scripts `inject-head-upper.mjs` and `inject-head-lower.mjs` inject these templates at the `<!-- BUILD_INSERT id="head-upper" -->` and `<!-- BUILD_INSERT id="head-lower" -->` placeholders in all HTML files in the build output.
+- Dynamic versioning, CSS suffix, and portfolio-specific scripts are handled in the lower head injection.
+- Documentation and build scripts updated to reflect the new modular approach.
+- Fixed build path issues in injection scripts to ensure correct operation.
+
 ## [2.5.11] - 2025-07-01 - Card Styling Unification & Inline Style Removal
 
 ### Changed

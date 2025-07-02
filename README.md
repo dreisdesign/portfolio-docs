@@ -1,11 +1,12 @@
 # Portfolio System: Table of Contents & Authoring Guide
 
-**Updated: July 1, 2025**
+**Updated: July 2, 2025**
 
 ## Overview
-This project is a modern, maintainable UX portfolio system for Dan Reis. It features a robust build pipeline with git-based change detection, comprehensive portfolio tagging system, automated navigation and head injection, dynamic company logo injection, automatic image dimension injection, pixel-perfect zoomable image functionality, a simplified authoring workflow for carousels and content, a fully automated tag row layout (including '+ More' tag spacer logic), and now automatic audit log archiving.
+This project is a modern, maintainable UX portfolio system for Dan Reis. It features a robust build pipeline with git-based change detection, comprehensive portfolio tagging system, automated navigation and modular head injection (upper/lower), dynamic company logo injection, automatic image dimension injection, pixel-perfect zoomable image functionality, a simplified authoring workflow for carousels and content, a fully automated tag row layout (including '+ More' tag spacer logic), and now automatic audit log archiving.
 
-### Current Status (July 1, 2025)
+### Current Status (July 2, 2025)
+- ✅ **Modular Head Injection**: The build system now uses a modular, template-driven approach for injecting the HTML head. The head is split into upper and lower parts, managed in `injected-head-upper.html` and `injected-head-lower.html`, and injected via `inject-head-upper.mjs` and `inject-head-lower.mjs` at the `<!-- BUILD_INSERT id="head-upper" -->` and `<!-- BUILD_INSERT id="head-lower" -->` placeholders. This improves maintainability and flexibility for future enhancements.
 - ✅ **Audit Log Auto-Archiving**: The audit script now automatically moves all but the 5 most recent audit files (plus the baseline) into the `_archive` folder within `dev/logs/audit/` after each run. The baseline audit is always retained in the main folder.
 - ✅ **Color System Finalized**: All color usage is now centralized and modernized with CSS variables. Legacy/duplicate color values and documentation removed.
 - ✅ **Automated '+ More' Tag Placement**: '+ More' tag placement is now fully automated in the build system for consistent tag row layout.

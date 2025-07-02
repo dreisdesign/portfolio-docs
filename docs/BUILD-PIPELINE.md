@@ -18,31 +18,21 @@ This document provides a high-level overview of the portfolio build pipeline, in
 4. **Featured Images** (`03-preprocess-featured-images.mjs`)
    - Prepares all responsive sizes for featured images.
 
-5. **Formatting & Head Injection** (`04-format-files.sh`, `head-templates/inject-head.mjs`)
-   - Formats HTML, CSS, and JSON.
-   - Minifies CSS and injects head elements.
+5. **File Formatting** (`04-format-files.sh`)
+   - Formats CSS and JSON.
+   - Minifies CSS.
 
-6. **Responsive Image Transformation** (`05-transform-responsive-images.mjs`)
-   - Updates image tags for responsive delivery.
-
-7. **Portfolio Build** (`06-build-portfolio.mjs`)
+6. **Portfolio Build** (`06-build-portfolio.mjs`)
    - Main build coordinator: processes portfolio pages, injects navigation, logos, tags, carousels, and generates index/tag pages.
-   - **Tag index and tag pages are now fully template-driven.**
-     - All layout and styles for tag index and tag pages are defined in:
-       - `dev/scripts/deploy/deploy-support/build-portfolio-templates/tag-index-template.html`
-       - `dev/scripts/deploy/deploy-support/build-portfolio-templates/tag-listing-template.html`
-     - The build script injects dynamic content only; no hardcoded HTML remains.
-     - If a template is missing, the build fails with a clear error.
-     - To update tag page layout or styles, edit the relevant template file and rebuild.
-   - The tag listing template (`tag-listing-template.html`) is now fully aligned with the main portfolio index page in:
-     - Stylesheet order and usage (uses only `main.min.css` and `page-portfolio.css`)
-     - Script placement (`portfolio-session.js` after cards)
-     - `.wrapper` and section structure
-     - Body class (`portfolio-index`)
-   - This ensures tag listing pages are visually and structurally identical to the main index, except for tag-specific content.
 
-8. **Footer Injection** (`inject-footer.mjs`)
-   - Ensures a single, correctly placed footer in every HTML file.
+7. **Modular Head & Footer Injection** (`inject-head-upper.mjs`, `inject-head-lower.mjs`, `inject-footer.mjs`)
+   - Injects upper and lower head content, and the footer into all HTML files in the build output.
+   - Uses placeholders: `<!-- BUILD_INSERT id="head-upper" -->` and `<!-- BUILD_INSERT id="head-lower" -->` in templates/source files.
+   - Head content is managed in separate template files for maintainability.
+   - **Note:** The modular head injection system allows you to update meta tags, favicons, and scripts in a single place (`injected-head-upper.html` and `injected-head-lower.html`), ensuring consistency and maintainability across all pages.
+
+8. **Responsive Image Transformation** (`05-transform-responsive-images.mjs`)
+   - Updates image tags for responsive delivery.
 
 9. **Pre-Deploy Checks** (`07-pre-deploy-check.sh`)
    - Runs final checks before deployment.

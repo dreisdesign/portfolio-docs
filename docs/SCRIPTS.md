@@ -26,10 +26,10 @@ This document describes the main scripts and utilities that power the portfolio 
 
 - **06-build-portfolio.mjs**
   - Main build coordinator: processes portfolio pages, injects navigation, logos, tags, carousels, and generates index/tag pages.
-  - **Tag index and tag pages are now 100% template-driven.**
-    - Templates: `build-portfolio-templates/tag-index-template.html` and `build-portfolio-templates/tag-listing-template.html`
-    - No hardcoded HTML for tag pages in the script—if a template is missing, the build fails.
-    - To change tag page layout or style, edit the template and rebuild.
+  - **Tag index, tag pages, carousels, and "Up Next" cards are now 100% template-driven.**
+    - Templates: `build-portfolio-templates/tag-index-template.html`, `build-portfolio-templates/tag-listing-template.html`, `build-portfolio-templates/carousel-template.html`, and `build-portfolio-templates/up-next-card-template.html`
+    - No hardcoded HTML for these components in the script—if a template is missing, the build fails.
+    - To change component layout or style, edit the template and rebuild.
     - The tag listing template is now fully aligned with the main portfolio index page in terms of stylesheet order, script placement, wrapper structure, and body class. This ensures visual and structural consistency across all portfolio pages.
 
 - **inject-head-upper.mjs**

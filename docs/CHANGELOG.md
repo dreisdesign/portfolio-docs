@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.13] - 2025-07-02 - Modular Carousel & "Up Next" Card Refactor
+
+### Changed
+- **Carousel Generation**: Refactored carousel generation in `06-build-portfolio.mjs` to be 100% template-driven, using the new `carousel-template.html`. All hardcoded carousel HTML has been removed from the script.
+- **"Up Next" Card Generation**: Refactored the "Up Next" card generation to use the `up-next-card-template.html`. The script now injects data into the template, rather than building the HTML from strings.
+- **Maintainability**: This change makes both the carousel and "Up Next" card components easier to maintain and update, as their structure is now defined in clean HTML templates instead of being embedded in JavaScript.
+
 ## [2.5.12] - 2025-07-02 - Modular Head Injection Refactor
 
 ### Changed

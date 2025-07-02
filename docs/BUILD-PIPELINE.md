@@ -24,6 +24,7 @@ This document provides a high-level overview of the portfolio build pipeline, in
 
 6. **Portfolio Build** (`06-build-portfolio.mjs`)
    - Main build coordinator: processes portfolio pages, injects navigation, logos, tags, carousels, and generates index/tag pages.
+   - Carousels and "Up Next" cards are now generated from modular HTML templates (`carousel-template.html`, `up-next-card-template.html`).
 
 7. **Modular Head & Footer Injection** (`inject-head-upper.mjs`, `inject-head-lower.mjs`, `inject-footer.mjs`)
    - Injects upper and lower head content, and the footer into all HTML files in the build output.

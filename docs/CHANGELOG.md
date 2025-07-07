@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.15] - 2025-07-07 - NPM Script & Interactive Menu Restructuring
+
+### Changed
+- **NPM Script Renaming**: Restructured npm scripts for better workflow clarity
+  - Renamed `build` → `build:only` (build without server)
+  - Renamed `preview` → `build` (build + preview server - most common workflow)
+  - `npm start` now only starts preview server on existing build
+- **Interactive Menu Updates**: Updated menu commands to match new npm script structure
+  - "Build" → "Build & Preview" (runs `npm run build`)
+  - "Preview" → "Start Server" (runs `npm start`)
+  - Moved advanced audit build to "Swift Build + Audit" in Utilities submenu
+- **Documentation Updates**: Updated `.github/copilot-instructions.md` and `README.md` to reflect new command structure
+
+### Benefits
+- Clearer separation between build-only and build-with-preview workflows
+- More intuitive menu naming that matches actual functionality
+- Consistent command patterns across the project
+
 ## [2.5.14] - 2025-07-02 - Automated Version Token Replacement
 
 ### Added

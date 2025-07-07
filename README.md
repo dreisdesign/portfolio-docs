@@ -230,6 +230,23 @@ The easiest way to interact with this project is through the interactive menu sy
 
 5. **Performance Optimized**: Primary "Build" option uses the fastest Swift Build variant for daily development
 
+## Quick Start Commands
+
+The build system has been streamlined with a clear command structure:
+
+### Main Commands
+- **`npm run build`** - Build site and start preview server (most common workflow)
+- **`npm start`** - Start preview server only (on existing build)
+- **`npm run menu`** - Interactive menu with Build & Preview, Start Server, Deploy, etc.
+
+### Interactive Menu Options
+The menu provides quick access to common tasks:
+- **Build & Preview**: Runs `npm run build` (full build + preview server)
+- **Start Server**: Runs `npm start` (preview server only)
+- **New Page**: Create a new portfolio project with automated setup
+- **Deploy**: Deploy the project to production
+- **Utilities**: Advanced tools (Swift Build + Audit, Full Build, etc.)
+
 ## Swift Build Feature
 The Swift Build feature provides ultra-fast development iteration with intelligent git-based change detection and self-healing image processing. This dramatically reduces build times while maintaining full build pipeline functionality.
 

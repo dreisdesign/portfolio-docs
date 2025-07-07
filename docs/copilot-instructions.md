@@ -60,10 +60,12 @@ Use these at the start of each AI response for clarity:
 
 # Build System Quick Commands
 
-- **Full site build:** `npm run build`
-  Main build pipeline for the entire site
-- **Preview full site locally:** `npm run preview`
-  Local server to preview the built site
+- **Build site and start preview:** `npm run build`
+  Main build pipeline + preview server (most common workflow)
+- **Start preview server only:** `npm start`
+  Local server to preview existing build
+- **Interactive menu:** `npm run menu`
+  Interactive menu with Build & Preview, Start Server, Deploy, etc.
 - **Preview a specific page:** `PAGE=/portfolio/tags/ npm run preview:page`
   Build/preview just one page (replace path as needed)
 - **Watch for changes (auto-rebuild):** `npm run dev`

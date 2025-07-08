@@ -1042,3 +1042,24 @@ This fix enables Phase 2 of the portfolio tag restructuring plan, allowing safe 
   - Smart template handling with both external template support and inline fallback generation
   - Comprehensive error handling and logging for tag processing workflows
   - Master tag index page generation with alphabetical sorting and project count aggregation
+
+## [2.5.06] - 2025-06-30 - System Enhancements & Design System Updates
+
+### Added
+- **Tag Display Logic & Configurability**: Portfolio card tag display is now fully configurable via `TAGS_PER_CARD` and `TAG_CATEGORIES_ON_CARDS` in the build script (`06-build-portfolio.mjs`).
+- **Color System Finalization**: All color usage is now centralized with CSS variables defined in `main-base.css`.
+- **Card & Tag Visual Consistency**: `.card--tags` CSS supports up to 3 lines for tags, with improved '+ More' tag placement and visibility.
+- **Feature Documentation Structure**: All feature documentation now uses the `date-topic-readme.md` naming convention for clarity and searchability.
+
+### Benefits
+- Consistent tag display and filtering logic across all card types
+- Unified, mobile-first design for tag index, tag pages, and portfolio index
+- Maintainable color system and visual hierarchy
+- Improved documentation structure for features and technical notes
+
+*For a full history of enhancements, see previous entries and [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md) for technical implementation details.*
+
+## [Unreleased] – 2025-07-08
+### Changed
+- Updated Sargento carousel captions in the MikMak Responsive Commerce Template case study to use a single <p> with <strong> and <span class="spacer">, matching the .content-caption pattern for improved spacing and visual consistency.
+- Manual bullets now live inside the .spacer for all Sargento slides.

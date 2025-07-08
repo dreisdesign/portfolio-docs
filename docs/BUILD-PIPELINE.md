@@ -69,3 +69,7 @@ This workflow eliminates the need to remember to sync docs manually and ensures 
 ## See Also
 - [SCRIPTS.md](SCRIPTS.md) for details on each script
 - [docs/simplified-workflow-guide.md](docs/simplified-workflow-guide.md) for a step-by-step workflow
+
+## Notable Updates
+
+- **Carousel Caption Markup Update:** Sargento carousel captions now use a single `<p>` with `<strong>` and `<span class="spacer">` containing manual bullets, matching the `.content-caption` pattern for spacing and style. See DESIGN-SYSTEM.md for details.

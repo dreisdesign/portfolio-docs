@@ -4,30 +4,27 @@
 
 > See `CHANGELOG.md` for full project update history. This document covers the current design system and workflow.
 
-## Recent System Enhancements (2025-06)
+## Table of Contents
 
-### Tag Display Logic & Configurability
-- Portfolio card tag display is now fully configurable via `TAGS_PER_CARD` and `TAG_CATEGORIES_ON_CARDS` in the build script (`06-build-portfolio.mjs`).
-- Only "Industry & Platform" and "Approach & Deliverables" tags are shown on cards by default; "My Role" tags are excluded for clarity and focus.
-- All card types (main index, Up Next, tag pages) use the same tag filtering and truncation logic for visual consistency.
-- The "+ More" tag spacer is now automated in the build, ensuring consistent tag row layout and clear overflow indication.
+- [Overview](#overview)
+- [Typography System](#typography-system)
+- [Color System](#color-system)
+- [Component System](#component-system)
+- [Spacing System](#spacing-system)
+- [Responsive Breakpoints](#responsive-breakpoints)
+- [CSS Consolidation Results](#css-consolidation-results)
+- [Content Guidelines](#content-guidelines)
+  - [Section Naming & Structure Guidelines](#section-naming--structure-guidelines)
+  - [Content & UI Text Capitalization Guidelines](#content--ui-text-capitalization-guidelines)
+- [Developer Notes](#developer-notes)
 
-### Color System Finalization
-- All color usage is now centralized with CSS variables defined in `main-base.css`.
-- Opacity variants (e.g., `--color-black-05`, `--color-black-20`) are used for overlays, borders, and subtle backgrounds, supporting accessible contrast and visual hierarchy.
-- Legacy/duplicate color values and documentation have been removed for maintainability.
-
-### Card & Tag Visual Consistency
-- `.card--tags` CSS supports up to 3 lines for tags, with improved "+ More" tag placement and visibility.
-- Tag index, tag pages, and portfolio index now share a unified, mobile-first design with consistent backgrounds and card styles.
-
-### Feature Documentation Structure
-- All feature documentation now uses the `date-topic-readme.md` naming convention for clarity and searchability.
-- See `dev/docs/features/` for detailed feature documentation and technical notes.
+---
 
 ## Overview
 
-This document outlines the systematic design approach for the portfolio website, including the CSS consolidation work completed to create a more maintainable and consistent codebase.
+*This section has moved to [README.md](../README.md) for better discoverability and project onboarding. See the README for a high-level project summary and context.*
+
+---
 
 ## Typography System
 
@@ -274,99 +271,91 @@ All colors are now managed using CSS custom properties for consistency and maint
 - Document systematic approaches for future reference
 - Test across breakpoints after major changes
 
-## Browser-Specific Fixes
+## Developer Notes
 
-### Safari Layout Compatibility
-
-#### Issue: "Up Next" Cards Loading Narrow
-Safari's layout engine sometimes incorrectly calculates grid/flexbox dimensions on initial page load, causing the "Up Next" project cards to render too narrow. The cards would resize correctly on hover or page refresh, indicating a layout calculation timing issue.
-
-#### Solution: Force Layout Recalculation
-Implemented `safari-layout-fix.js` with a simple but effective approach:
-
-```javascript
-// Wait for complete page load
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const container = document.querySelector('.next-project-container');
-    if (container) {
-      // Force complete layout recalculation by hiding/showing container
-      const display = container.style.display;
-      container.style.display = 'none';
-      container.offsetHeight; // Force reflow
-      container.style.display = display;
-    }
-  }, 100);
-});
-```
-
-**Key principles:**
-- **Safari-only targeting:** Uses user agent detection to avoid unnecessary processing in other browsers
-- **Complete page load:** Waits for `window.load` event to ensure all assets are loaded
-- **Simple force reflow:** Temporarily hides container to force Safari to recalculate entire layout
-- **Minimal timeout:** 100ms delay ensures timing is right for Safari's layout engine
-
-#### Zoomable Image Safari Fixes
-Safari also had issues with image zoom functionality where images would become aliased after zooming and centering was broken. This was resolved in `zoomable-image.js` by:
-- Resetting transforms before applying new zoom transforms
-- Using explicit centering calculations rather than relying on Safari's transform-origin
-- Ensuring image quality is maintained during zoom operations
-- **Using zoom-optimized image variants** for better performance and quality
-- **Grayblue placeholder loading animation** that's comfortable and non-motion-based
-
-#### Zoom-Optimized Image Pipeline & Loading Experience
-The build system now creates compressed zoom variants and provides a comfortable loading experience:
-- **Source:** Original high-resolution images (typically large, upscaled files)
-- **Zoom Variants:** `{basename}-zoom.png` files created by Sharp with quality: 95, compressionLevel: 6
-- **File Size Reduction:** Typically 60-70% smaller than originals while maintaining zoom quality
-- **Fallback Chain:** Zoom variant → Original PNG → Currently displayed image
-- **Build Integration:** Missing zoom variants are auto-detected and regenerated during builds
-
-**Loading Animation:**
-- **First zoom:** Shows a grayblue (`--grayblue`) placeholder in the exact shape of the original image
-- **High-res fade-in:** Smooth opacity transition from placeholder to final image (0.5s)
-- **Subsequent zooms:** Simple "Loading..." text indicator with faster fade-in (0.4s)
-- **Transparent image support:** Offwhite (`--offwhite`) background with subtle shadow and rounded corners
-- **Comfortable UX:** No blur or motion effects that could cause dizziness
-
-The zoom-optimized approach significantly reduces bandwidth usage for zoomable images while maintaining the high quality needed for detailed examination of portfolio work.
-
-### Testing Requirements
-All Safari-specific fixes must be tested in actual Safari browsers, as Safari's WebKit engine behaves differently from Chrome's WebKit implementation, and these differences cannot be reliably simulated in other browsers.
-
-## Video Performance Optimizations (2025-01-16) ✅
-
-### Immediate Code Improvements - IMPLEMENTED & TESTED
-- **Intelligent preloading**: Videos now preload metadata when they come into viewport (-200px margin)
-- **Progressive loading**: Videos in prominent view (70%+ visible) preload full data after 1 second delay
-- **Real progress indication**: Progress bar shows actual buffering progress instead of simulated loading
-- **Better loading detection**: Multiple fallback event listeners (`loadeddata`, `canplay`, `progress`) for more reliable loading
-- **Increased timeout**: Extended fallback timeout to 8 seconds for large files
-- **Result**: Significantly faster video loading experience - videos now load "really fast" per user testing
-
-### Performance Issues Identified
-- Video files are 1MB-21MB (most 3-8MB) - too large for web
-- High resolution (1080p+) and bitrate (2.1-2.3 Mbps) for short demos
-- No web optimization in current workflow
-
-### Video Optimization Script - OPTIONAL FURTHER IMPROVEMENT
-Created `/bin/optimize-videos.sh` to compress existing videos for even better performance:
-- Reduces bitrate to 1.2 Mbps (web-optimized)
-- Limits max width to 1280px
-- Uses efficient H.264 encoding with faststart
-- Creates backups before optimization
-- Targets 50-80% file size reduction
-
-To run: `./bin/optimize-videos.sh`
-
-*Note: Current loading performance is already fast due to preloading optimizations. Video compression would provide additional bandwidth savings and faster initial page loads.*
-
-### Recommended Workflow Changes
-1. Export videos at 720p-1080p max with 1-1.5 Mbps bitrate
-2. Use H.264 codec with "fast start" enabled
-3. Consider WebM format for additional compression
-4. Implement responsive video sources for different screen sizes
+*This section has moved to [DEVELOPER-NOTES.md](DEVELOPER-NOTES.md) for clarity and maintainability. All browser-specific fixes, video optimization, and deep technical implementation notes are now documented there.*
 
 ---
 
-*This design system reflects the systematic approach taken to create a more maintainable, consistent, and scalable CSS architecture while preserving the original design intent and responsive behavior.*
+*Recent system enhancements and release notes have moved to [CHANGELOG.md](../DOCS/CHANGELOG.md).*
+
+## Content Guidelines
+
+### Section Naming & Structure Guidelines
+
+#### Universal Sections & Naming Conventions
+
+1. **Overview Section**
+   - Markup: `<!-- OVERVIEW SECTION: Project Summary -->`
+   - Tag: `<section class="wrapper">`
+   - Header: `<h2>Summary</h2>`
+   - Use: Brief project summary and context.
+
+2. **Challenges Section**
+   - Markup: `<!-- SECTION: CHALLENGES -->`
+   - Tag: `<section class="challenges">`
+   - Header: `<h2>Business Problem & Challenge</h2>` (always plural, never just "Challenge")
+   - Use: Key business problems, user pain points, and project constraints.
+
+3. **Solution Section**
+   - Markup: `<!-- SECTION: SOLUTION -->`
+   - Tag: `<section class="solution">`
+   - Header: `<h2>Research & Data-Driven Design</h2>` (or `<h2>Solution</h2>` if preferred for consistency)
+   - Use: Approach, research, design process, and rationale.
+
+4. **Case Study Content Cards**
+   - Markup:
+     - `<!-- CASE STUDY CONTENT CARD (Image) -->`
+     - `<!-- CASE STUDY CONTENT CARD (Carousel) -->`
+     - `<!-- CASE STUDY CONTENT CARD (Video) -->`
+   - Tag: `<section class="content">`
+   - Use: Visuals, prototypes, research artifacts, annotated screenshots, or carousels.
+   - Caption: `<p class="content-caption">` (for images/videos) or `<div class="carousel-caption-source">` (for carousels)
+   - **Labeling:** Always use `<strong>` (not `<b>`) for the label at the start of a caption or carousel caption for accessibility and consistency. Example:
+     ```html
+     <p class="content-caption"><strong>Label:</strong> Description text...</p>
+     <div class="carousel-caption-source"><strong>Label:</strong> Description text...</div>
+     ```
+
+5. **Results Section**
+   - Markup: `<!-- SECTION: RESULTS -->`
+   - Tag: `<section class="results">`
+   - Header: `<h2>Results & Business Outcomes</h2>`
+   - Use: Measurable outcomes, business impact, and key metrics.
+
+6. **Learnings/Next Steps Section**
+   - Markup: `<!-- SECTION: LEARNINGS & NEXT STEPS -->`
+   - Tag: (usually within `.results` or as a separate section)
+   - Header: `<h2>Learnings & Next Steps</h2>`
+   - Use: Key takeaways, process insights, and future roadmap.
+
+7. **Optional/Other Patterns**
+   - Carousel captions: `<div class="carousel-caption-source">` (always use `<strong>` for the label)
+   - Card titles: `<div class="card-title">` (if used)
+   - Tag categories: `<div class="header--descriptions">` (for role, industry, approach)
+
+### Carousel Caption Markup
+- Carousel captions should use a single <p class="carousel-caption-source"> with <strong> for the title and a <span class="spacer"> containing all summary bullets (manual bullets, <br> for line breaks).
+- This matches the .content-caption pattern for spacing and visual consistency.
+- Example:
+  ```html
+  <p class="carousel-caption-source">
+    <strong>Title</strong>
+    <span class="spacer">
+      • Bullet 1<br>
+      • Bullet 2
+    </span>
+  </p>
+  ```
+- Use this pattern for all carousel slides to ensure a unified look and maintainable markup.
+
+#### Best Practices
+- Use the above section names and order for all case studies unless a strong reason exists to deviate.
+- Always use the same class and header structure for each section.
+- Use HTML comments to clearly mark each section for maintainability.
+- If a section is omitted, document the reason in the code or commit message.
+- **Legacy pages:** Update any older case studies to match these conventions for strict consistency.
+
+---
+
+_See also: Content & UI Text Capitalization Guidelines for style and formatting rules._

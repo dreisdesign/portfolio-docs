@@ -5,6 +5,12 @@
 ## Overview
 This project is a modern, maintainable UX portfolio system for Dan Reis. It features a robust build pipeline with git-based change detection, comprehensive portfolio tagging system, automated navigation and modular head injection (upper/lower), dynamic company logo injection, automatic image dimension injection, pixel-perfect zoomable image functionality, a simplified authoring workflow for carousels and content, a fully automated tag row layout (including '+ More' tag spacer logic), and now automatic audit log archiving.
 
+**Build Pipeline:**
+- The build process is fully automated and modular, with each step handled by a dedicated script (validation, image processing, formatting, portfolio build, head/footer injection, responsive images, pre-deploy checks, and preview server).
+- For a detailed step-by-step breakdown, see [BUILD-PIPELINE.md](DOCS/BUILD-PIPELINE.md).
+
+*For detailed design system, UI, and content guidelines, see [DESIGN-SYSTEM.md](DOCS/DESIGN-SYSTEM.md).*
+
 ### Current Status (July 2, 2025)
 - ✅ **Modular Head Injection**: The build system now uses a modular, template-driven approach for injecting the HTML head. The head is split into upper and lower parts, managed in `injected-head-upper.html` and `injected-head-lower.html`, and injected via `inject-head-upper.mjs` and `inject-head-lower.mjs` at the `<!-- BUILD_INSERT id="head-upper" -->` and `<!-- BUILD_INSERT id="head-lower" -->` placeholders. This improves maintainability and flexibility for future enhancements.
 - ✅ **Audit Log Auto-Archiving**: The audit script now automatically moves all but the 5 most recent audit files (plus the baseline) into the `_archive` folder within `dev/logs/audit/` after each run. The baseline audit is always retained in the main folder.
@@ -573,6 +579,10 @@ As of June 5, 2025, the CSS width constraint system should be verified to ensure
 - The build process will transform this into the full, production-ready carousel HTML automatically.
 - **For carousel captions with bulleted lists**: Use `<div class="carousel-caption-source">` instead of `<p class="carousel-caption-source">` to ensure proper HTML nesting (HTML doesn't allow `<ul>` elements inside `<p>` tags).
 - For videos, use the `.video-wrapper` structure as described above.
+
+### Carousel Caption Pattern Update
+- Carousel captions now use a single <p> with <strong> for the title and a <span class="spacer"> containing manual bullets, matching the .content-caption structure for consistent vertical rhythm and spacing.
+- See DESIGN-SYSTEM.md for markup and spacing guidelines.
 
 ## Navigation & Head Injection
 - Always use `<!-- BUILD_INSERT id="nav" -->` and `<!-- BUILD_INSERT id="head" -->` in your source HTML for consistent, automated injection.

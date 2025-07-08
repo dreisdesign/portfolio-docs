@@ -142,3 +142,55 @@ For more details, see:
 - `README.md` (project overview, setup, usage)
 - `CHANGELOG.md` (recent changes/updates)
 - `docs/BUILD-PIPELINE.md` (detailed build pipeline steps)
+
+---
+
+# GitHub Copilot Instructions
+
+To ensure consistent and high-quality code suggestions from GitHub Copilot, please follow these guidelines when accepting or reviewing AI-generated code:
+
+- Always review AI-generated code for correctness, security, and compliance with project standards.
+- Test any new code or configuration changes in a safe environment before deploying to production.
+- Be cautious with accepting large code changes or unfamiliar patterns; break them down and review incrementally.
+- Use version control (e.g., Git) to track changes and facilitate rollback if needed.
+- Document any AI-generated code or configuration changes thoroughly, including purpose, author, and date.
+- Regularly update and maintain dependencies, libraries, and tools used in the project to minimize vulnerabilities.
+- Provide feedback on AI-generated code quality and relevance to improve future suggestions.
+
+## Specific Patterns and Practices
+
+- For **JavaScript/TypeScript** code, prefer:
+  - `const` and `let` over `var` for variable declarations
+  - Arrow functions for anonymous functions
+  - Template literals for string concatenation
+  - Destructuring assignment for objects and arrays
+  - Default parameters and rest/spread operators for functions
+  - Async/await for asynchronous code
+  - Modular, reusable functions with clear input/output contracts
+
+- For **HTML**:
+  - Use semantic elements (`header`, `footer`, `article`, `section`, etc.) appropriately
+  - Ensure all elements have corresponding closing tags
+  - Use lowercase for element and attribute names
+  - Quote attribute values consistently
+  - Use `class` and `id` attributes for styling and scripting hooks
+  - Ensure proper nesting and hierarchy of elements
+
+- For **CSS**:
+  - Use classes for styling hooks, avoid IDs for styling
+  - Prefer `rem` or `em` units for font sizes, `px` for borders, `vh`/`vw` for layout
+  - Use `flexbox` or `grid` for layout, avoid floats
+  - Use `@media` queries for responsive design
+  - Organize styles logically, consider using BEM or similar methodology
+  - Avoid inline styles, prefer external or internal stylesheets
+
+- For **Node.js**:
+  - Use `const` and `let` for variable declarations
+  - Prefer arrow functions and template literals
+  - Use async/await for asynchronous code
+  - Organize code into modules with clear exports/imports
+  - Handle errors gracefully, use `try/catch` with async/await
+  - Validate and sanitize all input data
+  - Use environment variables for configuration and secrets
+
+- Carousel captions now use a single <p> with <strong> and <span class="spacer"> containing manual bullets, matching the .content-caption pattern for spacing and style. See DESIGN-SYSTEM.md for details.

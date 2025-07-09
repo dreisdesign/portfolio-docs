@@ -2,21 +2,72 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased] - 2025-07-09 - Documentation System Automation
+## [Unreleased] - 2025-07-09 - Documentation System Consolidation & Automation
 
 ### Added
+- **Git-Aware Build Pipeline Optimizations**: Enhanced build performance with intelligent change detection
+  - **Featured Image Processing**: Only processes featured images if git changes detected (matches main image pipeline)
+  - **CSS Minification**: Only minifies CSS files if changes detected in styles directory
+  - **Build Timing Tracking**: Build times now saved to `latest-build-timing.json` and displayed in audit reports
+  - **Smart Build Logic**: Eliminates unnecessary processing when no relevant changes detected
+- **Audit Workflow Improvements**: Enhanced audit system with better integration and timing
+  - **Build Timing in Audit Reports**: Shows build duration in audit output (e.g., "Last Build: 4.22s")
+  - **Build Timing in Comparison Tables**: Added "Build Time" row between Date and Pages in audit comparisons
+  - **Server Shutdown Audit**: Audit now runs when stopping server (Ctrl+C or "q" quit) instead of during build
+  - **Clean Build Logs**: Removed duplicate audit results and cleaned up legacy swift-build logs
 - **Automated Doc Date Updates**: All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process
   - Sync script automatically detects last commit date using `git log`
   - Updates `**Updated: July 9, 2025**` line before syncing to public repository
   - Handles both root-level files and files in `DOCS/` directory
   - Formats dates consistently as "Month Day, YYYY"
   - Fully functional and tested end-to-end
+- **Git Hook Automation**: Pre-push git hook automatically syncs documentation to public repository
+  - Hook location: `.git/hooks/pre-push` (executable and functional)
+  - Runs `sync-public-docs.sh` automatically before every push
+  - Blocks push if sync fails (safety feature)
+  - Eliminates need to manually remember documentation sync
+  - Ensures public documentation is always current and secure
+- **Documentation Consolidation**: Merged all technical documentation into streamlined 3-file structure
+  - Consolidated `BUILD-PIPELINE.md`, `SCRIPTS.md`, and `SIMPLIFIED-WORKFLOW-GUIDE.md` into `DEVELOPER-NOTES.md`
+  - Created single source of truth for all technical implementation details
+  - Archived old documentation files to `DOCS/_archive/` for reference
+  - Updated all cross-references in README.md and copilot instructions
+- **Public Docs Repository .gitignore**: Added `.gitignore` to portfolio-docs repo with `_archive/` exclusions
+  - Prevents archive folders from being committed to public repository
+  - Includes common patterns for system files, editor files, and backups
+  - Maintains clean, focused public documentation
+
+### Changed
+- **Documentation Structure**: Reduced from 6+ docs to focused 3-document system
+  - **README.md**: User-focused project overview (unchanged)
+  - **DOCS/DEVELOPER-NOTES.md**: All technical implementation, workflows, build pipeline, and scripts reference
+  - **DOCS/DESIGN-SYSTEM.md**: UI/content guidelines (unchanged)
+  - **DOCS/CHANGELOG.md**: Version history (unchanged)
+- **DEVELOPER-NOTES.md Organization**: Structured with clear sections for discoverability
+  - Quick Workflows (from SIMPLIFIED-WORKFLOW-GUIDE.md)
+  - Build Pipeline Overview (from BUILD-PIPELINE.md)
+  - Scripts Reference (from SCRIPTS.md)
+  - Browser-Specific Fixes (existing technical content)
+  - Video Performance Optimizations (existing technical content)
 
 ### Benefits
-- Ensures accurate, transparent documentation history
-- No manual date maintenance required
-- Each document reflects its true last modification date
-- Improves documentation auditability and user trust
+- **Optimized Build Performance**: Intelligent pipeline reduces unnecessary processing
+  - Git-aware change detection prevents redundant image and CSS processing
+  - Build timing tracking provides insights into build performance
+  - Audit workflow improvements reduce build interruptions and provide better feedback
+  - Smart build logic significantly reduces build times when no relevant changes detected
+- **Fully Automated Documentation Pipeline**: Complete end-to-end automation from commit to public sync
+  - Git hook ensures documentation is always synced without manual intervention
+  - Automatic date updates provide transparent, accurate documentation history
+  - Public repository stays current and secure automatically
+- **Single Source of Truth**: All technical information consolidated in one location
+- **Easier Maintenance**: One file to update instead of multiple scattered docs
+- **Better Developer Experience**: Everything technical in one place for reference
+- **Cleaner Repository**: Follows documentation best practices (user README + consolidated technical docs)
+- **Build Pipeline Integration**: Documentation sync integrated into development workflow
+  - No additional steps required - just commit and push as usual
+  - Automatic validation and error handling
+  - Maintains security and prevents accidental sensitive file exposure
 
 ## [Recent Updates] - Portfolio System Evolution
 

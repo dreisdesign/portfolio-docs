@@ -2,7 +2,7 @@
 
 *Last Updated: July 9, 2025*
 
-> _This date is now set automatically during doc sync, based on the last git commit for this file._
+> _This date is automatically updated during doc sync based on the last git commit for this file. The automation is fully functional and tested._
 
 > See `CHANGELOG.md` for full project update history. This document covers the current design system and workflow.
 

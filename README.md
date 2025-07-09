@@ -659,11 +659,23 @@ The preview server will start automatically and open your page at `http://localh
 
 ## Automated Doc Date Updates
 
-All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process. This is handled by the sync script and requires no manual intervention.
+All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process. This automation is **fully functional and tested**.
 
-- Ensures accurate, transparent doc history
-- No need to manually update dates—just commit and sync as usual
-- See `DOCS/BUILD-PIPELINE.md` for details
+**How it works:**
+- The sync script (`dev/scripts/deploy/deploy-support/utils/sync-public-docs.sh`) automatically detects the last commit date for each `.md` file using `git log`
+- Updates the `**Updated: July 9, 2025**` line in each file before syncing to the public repository
+- Handles both root-level files (like `README.md`) and files in the `DOCS/` directory
+- Formats dates consistently as "Month Day, YYYY" (e.g., "July 9, 2025")
+
+**Benefits:**
+- Ensures accurate, transparent documentation history
+- No manual date maintenance required—just commit changes as usual
+- Each document reflects its true last modification date
+- Improves documentation auditability and user trust
+
+**Verification:** Check the public repository after sync to confirm all dates match the latest commit dates for each file.
+
+See `DOCS/BUILD-PIPELINE.md` for technical implementation details.
 
 ## Technical Implementation & Build Pipeline
 

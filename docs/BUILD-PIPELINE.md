@@ -68,7 +68,14 @@ A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy
 
 - During each sync, the script automatically updates the `Updated:` date in all Markdown docs (`.md`) to match the last git commit date for each file.
 - This ensures every doc reflects its true last change, improving transparency and auditability.
-- No manual date edits needed—just commit as usual and the sync handles it.
+- **How it works:**
+  1. The sync script determines the correct source file path in the private repo for each `.md` file
+  2. Uses `git log` to find the last commit date for that specific file
+  3. Updates the `**Updated: July 9, 2025**` line in each file before syncing to the public repo
+  4. Handles both root-level files (like `README.md`) and files in the `DOCS/` directory
+- **Format:** Dates are automatically formatted as "Month Day, YYYY" (e.g., "July 9, 2025")
+- **No manual intervention needed:** Just commit changes as usual and the sync handles date updates automatically
+- **Verification:** Check the public repo after sync to confirm dates match the latest commit dates
 
 This workflow eliminates the need to remember to sync docs manually and ensures your public documentation is always current and safe.
 

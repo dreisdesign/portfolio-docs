@@ -71,7 +71,7 @@ A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy
 - **How it works:**
   1. The sync script determines the correct source file path in the private repo for each `.md` file
   2. Uses `git log` to find the last commit date for that specific file
-  3. Updates the `**Updated: July 9, 2025**` line in each file before syncing to the public repo
+  3. Updates the `**Updated: [date]**` line in each file before syncing to the public repo
   4. Handles both root-level files (like `README.md`) and files in the `DOCS/` directory
 - **Format:** Dates are automatically formatted as "Month Day, YYYY" (e.g., "July 9, 2025")
 - **No manual intervention needed:** Just commit changes as usual and the sync handles date updates automatically

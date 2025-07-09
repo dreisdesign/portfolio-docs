@@ -1,6 +1,188 @@
 # Developer Notes
 
-This document contains deep technical implementation notes, browser-specific workarounds, and advanced build pipeline details for the portfolio system. For design, content, and UI guidelines, see [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
+**Updated: July 9, 2025**
+
+This document contains all technical implementation details for the portfolio system, including workflows, build pipeline, scripts reference, browser fixes, and advanced implementation notes. For design, content, and UI guidelines, see [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
+
+---
+
+## Quick Workflows
+
+This section walks you through the most common workflows for building, previewing, and deploying your portfolio using the interactive menu and build scripts.
+
+### 1. Daily Development
+- Edit your content or code in the private repo.
+- Run `npm run menu` and select "Build" for a fast, smart build.
+- Preview your changes locally with the preview server.
+
+### 2. Adding a New Portfolio Page
+- Use the menu's "New Page" option or run `npm run create-new`.
+- Follow prompts to generate a new project folder and starter files.
+- Add your content and assets as needed.
+
+### 3. Tagging & Categorization
+- Use standardized tag markup in your HTML (see README for details).
+- The build system will automatically generate tag pages and indexes.
+
+### 4. Syncing Docs to Public Repo
+- Update or add docs in `DOCS/`.
+- Run the sync utility to publish all docs to the public docs repo.
+- Security checks will prevent accidental leaks of sensitive files.
+
+### 5. Troubleshooting
+- Check the build log for validation errors or skipped pages.
+- Use the troubleshooting section in the README or this document for common issues.
+
+---
+
+## Build Pipeline Overview
+
+This section provides a high-level overview of the portfolio build pipeline, including the order of operations, key scripts, and their responsibilities.
+
+### Pipeline Steps
+
+1. **HTML Validation** (`00-validate-html.mjs`)
+   - Validates source HTML for structure, metadata, and accessibility.
+   - Updates timestamps in HTML and CSS files.
+
+2. **Image Processing** (`01-process-images.mjs`)
+   - Optimizes, resizes, and converts images.
+   - Applies automatic sharpening for clarity.
+
+3. **Static Placeholders** (`02-create-static-placeholder.mjs`)
+   - Generates static placeholder images for loading/fallback.
+
+4. **Featured Images** (`03-preprocess-featured-images.mjs`)
+   - Prepares all responsive sizes for featured images.
+
+5. **File Formatting** (`04-format-files.sh`)
+   - Formats CSS and JSON.
+   - Minifies CSS.
+
+6. **Portfolio Build** (`06-build-portfolio.mjs`)
+   - Main build coordinator: processes portfolio pages, injects navigation, logos, tags, carousels, and generates index/tag pages.
+   - Carousels and "Up Next" cards are now generated from modular HTML templates (`carousel-template.html`, `up-next-card-template.html`).
+   - **Automated Version Replacement:** After all portfolio pages are generated, the build script automatically replaces all `{{VERSION}}` tokens in every HTML file in the build output directory with the current version from `package.json`. This ensures all asset URLs (CSS, JS, favicons, etc.) are cache-busted and versioned consistently.
+
+7. **Modular Head & Footer Injection** (`inject-head-upper.mjs`, `inject-head-lower.mjs`, `inject-footer.mjs`)
+   - Injects upper and lower head content, and the footer into all HTML files in the build output.
+   - Uses placeholders: `<!-- BUILD_INSERT id="head-upper" -->` and `<!-- BUILD_INSERT id="head-lower" -->` in templates/source files.
+   - Head content is managed in separate template files for maintainability.
+   - **Note:** The modular head injection system allows you to update meta tags, favicons, and scripts in a single place (`injected-head-upper.html` and `injected-head-lower.html`), ensuring consistency and maintainability across all pages.
+
+8. **Responsive Image Transformation** (`05-transform-responsive-images.mjs`)
+   - Updates image tags for responsive delivery.
+
+9. **Pre-Deploy Checks** (`07-pre-deploy-check.sh`)
+   - Runs final checks before deployment.
+
+10. **Preview Server** (`08-preview-server.mjs`)
+    - Optionally starts a local server for previewing the build.
+
+### Build Pipeline Diagram
+
+```
+[Validate HTML] → [Process Images] → [Create Placeholders] → [Featured Images]
+      ↓                 ↓                   ↓                    ↓
+[Format & Inject Head] → [Responsive Images] → [Portfolio Build]
+      ↓                 ↓                   ↓                    ↓
+[Footer Inject] → [Pre-Deploy Checks] → [Preview Server]
+```
+
+### Documentation Sync Automation
+
+A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy/deploy-support/utils/sync-public-docs.sh`) before every push. This ensures that all public documentation in the `DOCS/` and root-level `.md` files are always up to date and secure, without requiring manual steps.
+
+- **Location:** `.git/hooks/pre-push`
+- **Behavior:** Runs the sync script and blocks the push if the sync fails.
+- **How it works:**
+  1. You commit as usual.
+  2. On `git push`, the sync script runs automatically.
+  3. If the sync passes, the push proceeds. If not, the push is blocked and you see an error message.
+- **To disable or customize:** Edit or remove `.git/hooks/pre-push`.
+
+#### Automated "Updated:" Date in Docs
+
+- During each sync, the script automatically updates the `Updated:` date in all Markdown docs (`.md`) to match the last git commit date for each file.
+- This ensures every doc reflects its true last change, improving transparency and auditability.
+- **How it works:**
+  1. The sync script determines the correct source file path in the private repo for each `.md` file
+  2. Uses `git log` to find the last commit date for that specific file
+  3. Updates the `**Updated: July 9, 2025**` line in each file before syncing to the public repo
+  4. Handles both root-level files (like `README.md`) and files in the `DOCS/` directory
+- **Format:** Dates are automatically formatted as "Month Day, YYYY" (e.g., "July 9, 2025")
+- **No manual intervention needed:** Just commit changes as usual and the sync handles date updates automatically
+- **Verification:** Check the public repo after sync to confirm dates match the latest commit dates
+
+This workflow eliminates the need to remember to sync docs manually and ensures your public documentation is always current and safe.
+
+---
+
+## Scripts Reference
+
+This section describes the main scripts and utilities that power the portfolio build system. For most users, the interactive menu (`npm run menu`) is the easiest way to access these features.
+
+### Core Scripts
+
+- **00-validate-html.mjs**
+  - Validates HTML structure, metadata, and accessibility.
+  - Updates timestamps in HTML and CSS files.
+
+- **01-process-images.mjs**
+  - Optimizes, resizes, and sharpens images for web delivery.
+
+- **02-create-static-placeholder.mjs**
+  - Generates static placeholder images for loading/fallback.
+
+- **03-preprocess-featured-images.mjs**
+  - Prepares all responsive sizes for featured images.
+
+- **04-format-files.sh**
+  - Formats HTML, CSS, and JSON files.
+  - Minifies CSS.
+
+- **05-transform-responsive-images.mjs**
+  - Updates image tags for responsive delivery (`srcset`, `sizes`).
+
+- **06-build-portfolio.mjs**
+  - Main build coordinator: processes portfolio pages, injects navigation, logos, tags, carousels, and generates index/tag pages.
+  - **Tag index, tag pages, carousels, and "Up Next" cards are now 100% template-driven.**
+    - Templates: `build-portfolio-templates/tag-index-template.html`, `build-portfolio-templates/tag-listing-template.html`, `build-portfolio-templates/carousel-template.html`, and `build-portfolio-templates/up-next-card-template.html`
+    - No hardcoded HTML for these components in the script—if a template is missing, the build fails.
+    - To change component layout or style, edit the template and rebuild.
+    - The tag listing template is now fully aligned with the main portfolio index page in terms of stylesheet order, script placement, wrapper structure, and body class. This ensures visual and structural consistency across all portfolio pages.
+  - **Automated Version Replacement:** At the end of the build, all `{{VERSION}}` tokens in HTML output are replaced with the version from `package.json`.
+
+- **inject-head-upper.mjs**
+  - Injects the upper portion of the HTML head (essential meta tags, charset, viewport, etc.) into all HTML files at the `<!-- BUILD_INSERT id="head-upper" -->` placeholder, using the `injected-head-upper.html` template.
+
+- **inject-head-lower.mjs**
+  - Injects the lower portion of the HTML head (fonts, favicons, CSS, versioning, and portfolio scripts) into all HTML files at the `<!-- BUILD_INSERT id="head-lower" -->` placeholder, using the `injected-head-lower.html` template.
+  - Handles dynamic versioning and portfolio-specific script injection.
+
+- **inject-footer.mjs**
+  - Ensures a single, correctly placed footer in every HTML file.
+
+- **07-pre-deploy-check.sh**
+  - Runs final checks before deployment.
+
+- **08-preview-server.mjs**
+  - Starts a local server for previewing the build.
+
+### Utilities
+
+- **audit.mjs**
+  - Unified audit, comparison, and baseline update tool.
+  - Usage: `node dev/scripts/deploy/deploy-support/utils/audit.mjs [options]`
+
+- **insert-section.mjs & insert-section.sh**
+  - Interactive utility for inserting prebuilt HTML sections (image, video, carousel) into any HTML file.
+
+- **scrape-site-content.mjs**
+  - Extracts text content from the live site for analysis or migration.
+
+- **sync-public-docs.sh**
+  - Syncs documentation from the private repo to the public docs repo, with security checks.
 
 ---
 
@@ -98,4 +280,4 @@ To run: `./bin/optimize-videos.sh`
 
 ---
 
-*For the main build pipeline, see [BUILD-PIPELINE.md](BUILD-PIPELINE.md).*
+## Browser-Specific Fixes

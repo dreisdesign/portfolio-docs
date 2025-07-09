@@ -2,6 +2,103 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2025-07-09 - Documentation System Automation
+
+### Added
+- **Automated Doc Date Updates**: All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process
+  - Sync script automatically detects last commit date using `git log`
+  - Updates `**Updated: July 9, 2025**` line before syncing to public repository
+  - Handles both root-level files and files in `DOCS/` directory
+  - Formats dates consistently as "Month Day, YYYY"
+  - Fully functional and tested end-to-end
+
+### Benefits
+- Ensures accurate, transparent documentation history
+- No manual date maintenance required
+- Each document reflects its true last modification date
+- Improves documentation auditability and user trust
+
+## [Recent Updates] - Portfolio System Evolution
+
+### Current Status (July 2025)
+- ✅ **Modular Head Injection**: Template-driven HTML head management with upper/lower parts
+- ✅ **Audit Log Auto-Archiving**: Keeps 5 most recent audit logs, archives older ones automatically
+- ✅ **Color System Finalized**: Centralized CSS variables for all colors
+- ✅ **Automated '+ More' Tag Placement**: Fully automated tag row layout
+- ✅ **Feature Docs Organized**: Dated feature folder structure
+- ✅ **UI/UX Improvements**: Zoomable image overlays and tag/card layout
+
+### Latest Features (July 2025)
+- ✅ **Automatic Image Dimension Injection**: Revolutionary developer experience improvement
+  - Build system automatically reads image metadata using Sharp
+  - 270 manual dimension attributes removed from source HTML
+  - Prevents cumulative layout shift (CLS) issues
+  - Source HTML now requires only `data-responsive="true"`
+- ✅ **Source HTML Cleanup**: Completely automated dimension removal
+  - 144 images now processed automatically during build
+  - Developer workflow simplified: just add images with alt text
+  - Template system updated to generate clean HTML
+- ✅ **Tag Index & Portfolio Visual Consistency**: Unified, mobile-first design
+  - Offwhite page backgrounds, white cards with subtle shadow
+  - Consistent grid/card layout across all breakpoints
+- ✅ **Mobile-First CSS**: Responsive grid and card layouts
+- ✅ **Preview Automation**: One-liner page building and preview
+- ✅ **Card Styling Unified**: External CSS-only styling, no inline styles
+- ✅ **Color Variable System**: CSS custom properties for maximum maintainability
+- ✅ **Automated Version Token Replacement**: Cache-busting for all assets
+
+### Performance & Build System (2025)
+- ✅ **Swift Build V2.0**: Ultra-fast git-based change detection with self-healing
+  - 18-second builds vs 3+ minute full builds (17x faster)
+  - Smart image processing: only changed images
+  - Self-healing: auto-regenerates missing responsive variants
+- ✅ **Build Performance Optimized**: Development workflow enhanced
+  - Edit images → immediate detection without committing
+  - Git-based change detection for all asset types
+- ✅ **Tag Consolidation System**: Robust handling of unlimited tag content
+- ✅ **Tag Page Generation**: All 32 tag pages display correctly
+
+### Layout & Design System (2025)
+- ✅ **Complete Layout & Spacing Overhaul**: Perfect consistency across all pages
+  - Refactored wrapper container architecture
+  - Semantic spacing system using rem units
+  - Margin-based approach replacing grid-gap
+- ✅ **Safari & iOS Compatibility**: All browser-specific issues resolved
+  - "Up Next" card sizing fixed on Safari
+  - iOS footer link color issues resolved
+- ✅ **Enhanced Responsive Design**: Improved layout behavior
+  - Homepage responsive rules optimized
+  - Better touch interface optimization
+
+### Portfolio System Features (2025)
+- ✅ **Dynamic Company Logo Injection**: Automated logo system
+  - `<!-- BUILD_INSERT id="company-logo" -->` auto-detects company
+  - Works across headers, cards, tag pages, portfolio index
+  - Extensible design for new companies
+- ✅ **Tag System Complete**: 3-category portfolio tagging
+  - Role, Platform, Audience + Company categories
+  - Tag index organized by logical categories
+  - Auto-generated tag pages and navigation
+- ✅ **Portfolio Tag Styling Unified**: Consistent styling across all pages
+  - Font size (0.875rem), spacing, transparent backgrounds
+  - Removed commas between tags for cleaner presentation
+- ✅ **"Up Next" Sequential Ordering**: Follows portfolio index sequence
+
+### Public Build System & Community
+- ✅ **Public Build System Released**: GitHub repository for community use
+  - Repository: https://github.com/dreisdesign/portfolio-build
+  - Complete build pipeline with documentation
+  - Security: All sensitive information sanitized
+- ✅ **Source Contamination Resolved**: Clean source/build separation
+  - Removed 1,500+ build artifacts from source directory
+
+### Audit & Quality Systems
+- ✅ **Streamlined Audit Workflow**: Single, powerful audit script
+  - All audit functionality consolidated into `audit.mjs`
+  - Legacy scripts removed or replaced
+  - Minimal, clear output with recommendations
+  - Easy daily use workflow
+
 ## [2.5.15] - 2025-07-07 - NPM Script & Interactive Menu Restructuring
 
 ### Changed
@@ -1042,24 +1139,3 @@ This fix enables Phase 2 of the portfolio tag restructuring plan, allowing safe 
   - Smart template handling with both external template support and inline fallback generation
   - Comprehensive error handling and logging for tag processing workflows
   - Master tag index page generation with alphabetical sorting and project count aggregation
-
-## [2.5.06] - 2025-06-30 - System Enhancements & Design System Updates
-
-### Added
-- **Tag Display Logic & Configurability**: Portfolio card tag display is now fully configurable via `TAGS_PER_CARD` and `TAG_CATEGORIES_ON_CARDS` in the build script (`06-build-portfolio.mjs`).
-- **Color System Finalization**: All color usage is now centralized with CSS variables defined in `main-base.css`.
-- **Card & Tag Visual Consistency**: `.card--tags` CSS supports up to 3 lines for tags, with improved '+ More' tag placement and visibility.
-- **Feature Documentation Structure**: All feature documentation now uses the `date-topic-readme.md` naming convention for clarity and searchability.
-
-### Benefits
-- Consistent tag display and filtering logic across all card types
-- Unified, mobile-first design for tag index, tag pages, and portfolio index
-- Maintainable color system and visual hierarchy
-- Improved documentation structure for features and technical notes
-
-*For a full history of enhancements, see previous entries and [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md) for technical implementation details.*
-
-## [Unreleased] – 2025-07-08
-### Changed
-- Updated Sargento carousel captions in the MikMak Responsive Commerce Template case study to use a single <p> with <strong> and <span class="spacer">, matching the .content-caption pattern for improved spacing and visual consistency.
-- Manual bullets now live inside the .spacer for all Sargento slides.

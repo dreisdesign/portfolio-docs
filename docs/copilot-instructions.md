@@ -141,7 +141,7 @@ Use these at the start of each AI response for clarity:
 For more details, see:
 - `README.md` (project overview, setup, usage)
 - `CHANGELOG.md` (recent changes/updates)
-- `docs/BUILD-PIPELINE.md` (detailed build pipeline steps)
+- `DOCS/DEVELOPER-NOTES.md` (technical implementation, build pipeline, and workflows)
 
 ---
 

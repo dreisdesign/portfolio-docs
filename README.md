@@ -1,6 +1,6 @@
 # Portfolio System: Table of Contents & Authoring Guide
 
-**Updated: July  9, 2025**
+**Updated: July 9, 2025**
 
 <!-- Test comment for date automation -->
 

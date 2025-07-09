@@ -64,6 +64,12 @@ A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy
   3. If the sync passes, the push proceeds. If not, the push is blocked and you see an error message.
 - **To disable or customize:** Edit or remove `.git/hooks/pre-push`.
 
+### Automated "Updated:" Date in Docs
+
+- During each sync, the script automatically updates the `Updated:` date in all Markdown docs (`.md`) to match the last git commit date for each file.
+- This ensures every doc reflects its true last change, improving transparency and auditability.
+- No manual date edits needed—just commit as usual and the sync handles it.
+
 This workflow eliminates the need to remember to sync docs manually and ensures your public documentation is always current and safe.
 
 ## See Also

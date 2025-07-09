@@ -655,6 +655,14 @@ The preview server will start automatically and open your page at `http://localh
 - **Homepage SVG**: Fixed waving hand animation visibility issue - SVG now displays correctly from page load
 - **Smooth Interactions**: Enhanced animation performance with proper CSS properties
 
+## Automated Doc Date Updates
+
+All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process. This is handled by the sync script and requires no manual intervention.
+
+- Ensures accurate, transparent doc history
+- No need to manually update dates—just commit and sync as usual
+- See `DOCS/BUILD-PIPELINE.md` for details
+
 ## Technical Implementation & Build Pipeline
 
 The build process is orchestrated by a series of scripts in `dev/scripts/deploy/deploy-support/scripts/`, run in this order:
@@ -826,6 +834,8 @@ Recent improvements:
 - Updated insert-section template for new image standards
 - All image sharpening removed from build scripts
 - Full build validated for correct transformation and attribute injection
+
+<!-- Test: Minor edit to trigger doc date update automation (2025-07-09) -->
 
 ## Color Variable System (2025-06-26)
 

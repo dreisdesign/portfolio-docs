@@ -1,0 +1,22 @@
+# System files
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Archive directories
+_archive/
+docs/_archive/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Logs
+*.log

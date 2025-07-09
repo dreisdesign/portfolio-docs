@@ -1,6 +1,6 @@
 # Portfolio Design System Documentation
 
-**Updated: July 9, 2025**
+*Last Updated: July 9, 2025*
 
 > _This date is now set automatically during doc sync, based on the last git commit for this file._
 

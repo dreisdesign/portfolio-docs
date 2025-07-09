@@ -1,6 +1,8 @@
 # Portfolio System: Table of Contents & Authoring Guide
 
-**Updated: July 9, 2025**
+**Updated: July  9, 2025**
+
+<!-- Test comment for date automation -->
 
 ## Overview
 This project is a modern, maintainable UX portfolio system for Dan Reis. It features a robust build pipeline with git-based change detection, comprehensive portfolio tagging system, automated navigation and modular head injection (upper/lower), dynamic company logo injection, automatic image dimension injection, pixel-perfect zoomable image functionality, a simplified authoring workflow for carousels and content, a fully automated tag row layout (including '+ More' tag spacer logic), and now automatic audit log archiving.

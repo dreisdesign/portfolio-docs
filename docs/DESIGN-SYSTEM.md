@@ -1,6 +1,6 @@
 # Portfolio Design System Documentation
 
-*Last Updated: June 30, 2025*
+*Last Updated: July 9, 2025*
 
 > See `CHANGELOG.md` for full project update history. This document covers the current design system and workflow.
 

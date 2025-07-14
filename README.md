@@ -1,6 +1,6 @@
 # Portfolio System
 
-**Updated: July 9, 2025**
+**Updated: July 14, 2025**
 
 A modern, maintainable UX portfolio system with automated build pipeline, responsive image processing, and comprehensive tagging system.
 
@@ -72,6 +72,12 @@ npm run deploy:open   # Deploy + open site
 - **Auto-Generated Tags**: Role, Platform, Audience, Company categories
 - **Tag Pages**: Individual pages for each tag with relevant projects
 - **Tag Index**: Organized, searchable tag directory
+
+### Password Protection
+- **Confidential Work Protection**: BUILD_INSERT-based password protection for sensitive portfolio pages
+- **Professional UI**: Clean access forms with hiring manager instructions
+- **Security Features**: Client-side hashing, content encoding, anti-scraping measures
+- **Build Integration**: Seamless integration with existing build pipeline
 
 ### Automated Systems
 - **Image Dimensions**: Automatic injection using Sharp metadata

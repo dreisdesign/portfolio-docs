@@ -1,6 +1,6 @@
 # Developer Notes
 
-**Updated: July 9, 2025**
+**Updated: July 14, 2025**
 
 This document contains all technical implementation details for the portfolio system, including workflows, build pipeline, scripts reference, browser fixes, and advanced implementation notes. For design, content, and UI guidelines, see [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
 
@@ -70,13 +70,19 @@ This section provides a high-level overview of the portfolio build pipeline, inc
    - Head content is managed in separate template files for maintainability.
    - **Note:** The modular head injection system allows you to update meta tags, favicons, and scripts in a single place (`injected-head-upper.html` and `injected-head-lower.html`), ensuring consistency and maintainability across all pages.
 
-8. **Responsive Image Transformation** (`05-transform-responsive-images.mjs`)
+8. **Password Protection** (`inject-password-protection.mjs`)
+   - Converts pages marked with `<!-- BUILD_INSERT id="password" data-password="access-code" -->` into password-protected versions
+   - Base64 encodes original content and replaces with professional access form UI
+   - Preserves HTML entities and complex JavaScript functionality (e.g., carousel components)
+   - Integrates seamlessly with existing BUILD_INSERT pattern
+
+9. **Responsive Image Transformation** (`05-transform-responsive-images.mjs`)
    - Updates image tags for responsive delivery.
 
-9. **Pre-Deploy Checks** (`07-pre-deploy-check.sh`)
-   - Runs final checks before deployment.
+10. **Pre-Deploy Checks** (`07-pre-deploy-check.sh`)
+    - Runs final checks before deployment.
 
-10. **Preview Server** (`08-preview-server.mjs`)
+11. **Preview Server** (`08-preview-server.mjs`)
     - Optionally starts a local server for previewing the build.
 
 ### Build Pipeline Diagram
@@ -86,7 +92,7 @@ This section provides a high-level overview of the portfolio build pipeline, inc
       ↓                 ↓                   ↓                    ↓
 [Format & Inject Head] → [Responsive Images] → [Portfolio Build]
       ↓                 ↓                   ↓                    ↓
-[Footer Inject] → [Pre-Deploy Checks] → [Preview Server]
+[Footer Inject] → [Password Protection] → [Pre-Deploy Checks] → [Preview Server]
 ```
 
 ### Documentation Sync Automation
@@ -108,7 +114,7 @@ A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy
 - **How it works:**
   1. The sync script determines the correct source file path in the private repo for each `.md` file
   2. Uses `git log` to find the last commit date for that specific file
-  3. Updates the `**Updated: July 9, 2025**` line in each file before syncing to the public repo
+  3. Updates the `**Updated: July 14, 2025**` line in each file before syncing to the public repo
   4. Handles both root-level files (like `README.md`) and files in the `DOCS/` directory
 - **Format:** Dates are automatically formatted as "Month Day, YYYY" (e.g., "July 9, 2025")
 - **No manual intervention needed:** Just commit changes as usual and the sync handles date updates automatically
@@ -159,6 +165,12 @@ This section describes the main scripts and utilities that power the portfolio b
 - **inject-head-lower.mjs**
   - Injects the lower portion of the HTML head (fonts, favicons, CSS, versioning, and portfolio scripts) into all HTML files at the `<!-- BUILD_INSERT id="head-lower" -->` placeholder, using the `injected-head-lower.html` template.
   - Handles dynamic versioning and portfolio-specific script injection.
+
+- **inject-password-protection.mjs**
+  - Converts pages marked with `<!-- BUILD_INSERT id="password" data-password="access-code" -->` into password-protected versions
+  - Base64 encodes original content and replaces with professional access form UI
+  - Preserves HTML entities and complex JavaScript functionality (e.g., carousel components)
+  - Integrates seamlessly with existing BUILD_INSERT pattern
 
 - **inject-footer.mjs**
   - Ensures a single, correctly placed footer in every HTML file.
@@ -279,5 +291,3 @@ To run: `./bin/optimize-videos.sh`
 4. Implement responsive video sources for different screen sizes
 
 ---
-
-## Browser-Specific Fixes

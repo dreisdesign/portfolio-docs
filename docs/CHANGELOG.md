@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- **Password Protection System**: Implemented BUILD_INSERT-based password protection for confidential portfolio pages
+  - **Integration with Build Pipeline**: Added `password:protect` npm script and build step after all BUILD_INSERT processing
+  - **HTML Entity Preservation**: Enhanced Base64 encoding/decoding to properly handle HTML entities (e.g., carousel arrow icons)
+  - **Professional UI**: Clean access form with hiring manager instructions and error handling
+  - **Security Features**: Client-side password hashing, content encoding, and anti-scraping protections
+  - **Carousel Compatibility**: Fixed HTML entity handling to ensure carousel navigation works properly after unlocking
 
 ### Changed
 
@@ -25,7 +31,7 @@ All notable changes to this project will be documented in this file.
   - **Clean Build Logs**: Removed duplicate audit results and cleaned up legacy swift-build logs
 - **Automated Doc Date Updates**: All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process
   - Sync script automatically detects last commit date using `git log`
-  - Updates `**Updated: July 9, 2025**` line before syncing to public repository
+  - Updates `**Updated: July 14, 2025**` line before syncing to public repository
   - Handles both root-level files and files in `DOCS/` directory
   - Formats dates consistently as "Month Day, YYYY"
   - Fully functional and tested end-to-end

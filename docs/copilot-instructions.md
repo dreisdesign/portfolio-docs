@@ -78,6 +78,8 @@ Use these at the start of each AI response for clarity:
   (Or any script in your scripts/ folder)
 - **Check for build errors:** `cat build_output.log | tail -20`
   See last 20 lines of the build log
+- **Apply password protection:** `npm run password:protect`
+  Add password protection to pages marked with BUILD_INSERT id="password"
 - **Sync from private repo:** `sh scripts/sync-from-private.sh`
   Sync content/config from private sources
 - **Validate HTML output:** `node build-system/scripts/00-validate-html.mjs`

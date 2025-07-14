@@ -124,6 +124,19 @@ This workflow eliminates the need to remember to sync docs manually and ensures 
 
 ---
 
+## Password Protection System
+
+A secure password protection system for portfolio pages uses a modal dialog over a blurred, placeholder preview. Real content is only loaded after authentication.
+
+**Features:**
+- Modal dialog overlays blurred preview content
+- Real content hidden from DOM until password is entered
+- Scroll lock while modal is active
+- Integrated with site-wide CSS for consistent design
+- Template-driven via `password-protection-template.html`
+
+---
+
 ## Scripts Reference
 
 This section describes the main scripts and utilities that power the portfolio build system. For most users, the interactive menu (`npm run menu`) is the easiest way to access these features.

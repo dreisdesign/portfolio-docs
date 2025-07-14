@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.19] - 2025-07-14 - Advanced Password Protection Modal
+
+### Added
+- **Password Protection Modal:** Implemented a secure modal dialog for portfolio pages, overlaying a blurred, non-disclosing placeholder preview. Real content is only loaded after successful authentication, preventing scraping or source inspection. Modal disables background scrolling and uses the site's design system for a seamless experience.
+
 ## [2.5.18] - 2025-07-14 - Password Protection System Refactoring
 
 ### Enhanced

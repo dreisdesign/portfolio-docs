@@ -80,6 +80,10 @@ npm run deploy:open   # Deploy + open site
 - **Security Features**: Client-side hashing, content encoding, anti-scraping measures
 - **Build Integration**: Seamless integration with existing build pipeline
 
+### Advanced Security Features
+
+- **Password Protection Modal:** Protected pages show a blurred, placeholder preview with a modal password prompt. Real content is only loaded after authentication, preventing unauthorized access via source inspection. Modal disables background scrolling and matches the site's design system.
+
 ### Automated Systems
 - **Image Dimensions**: Automatic injection using Sharp metadata
 - **Company Logos**: Auto-detection based on folder structure

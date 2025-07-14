@@ -148,6 +148,31 @@ This section describes the main scripts and utilities that power the portfolio b
   - Minifies CSS.
 
 - **05-transform-responsive-images.mjs**
+  - Transforms all images to include responsive `<picture>` elements.
+
+- **06-build-portfolio.mjs**
+  - Main script for generating portfolio structure, tags, and navigation.
+
+- **08-preview-server.mjs**
+  - Local development server for previewing builds.
+
+### Password Protection System
+
+- **inject-password-protection.mjs**
+  - Location: `dev/scripts/deploy/deploy-support/password-protection/`
+  - Applies password protection to pages marked with `BUILD_INSERT id="password"`
+  - Uses template-driven architecture with `password-protection-template.html`
+  - Integrates with build pipeline via `npm run password:protect`
+
+- **add-password-protection.mjs**
+  - Interactive utility for adding password protection to portfolio pages
+  - Accessible via `npm run menu` → Utilities → Add Password Protection
+  - Validates passwords and provides confirmation workflow
+
+- **password-protection-template.html**
+  - Location: `dev/scripts/deploy/deploy-support/build-portfolio-templates/`
+  - HTML template with placeholders: `[[TITLE]]`, `[[DESCRIPTION]]`, `[[ENCODED_CONTENT]]`, `[[PASSWORD_HASH]]`
+  - Professional UI with hiring manager instructions and security features
   - Updates image tags for responsive delivery (`srcset`, `sizes`).
 
 - **06-build-portfolio.mjs**

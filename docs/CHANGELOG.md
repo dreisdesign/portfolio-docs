@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.18] - 2025-07-14 - Password Protection System Refactoring
+
+### Enhanced
+- **Template-Driven Password Protection**: Refactored password protection system to use template-based architecture
+  - **Template Separation**: Extracted HTML/CSS/JS to `build-portfolio-templates/password-protection-template.html`
+  - **Placeholder System**: Implemented `[[TITLE]]`, `[[DESCRIPTION]]`, `[[ENCODED_CONTENT]]`, `[[PASSWORD_HASH]]` placeholders
+  - **Improved Maintainability**: Separated presentation logic from script logic for better code organization
+  - **Path Reorganization**: Moved password protection scripts to `dev/scripts/deploy/deploy-support/password-protection/`
+  - **Build Integration**: Updated npm script paths to match new organized structure
+
+### Fixed
+- **Build Pipeline Integration**: Corrected password protection script path in package.json for proper build execution
+
 ## [2.5.17] - 2025-07-14 - Password Protection System & Interactive Menu Enhancement
 
 ### Added

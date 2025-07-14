@@ -10,7 +10,7 @@
 - **Security Features**: Client-side password hashing, Base64 content encoding, anti-scraping protections
 
 **Usage:**
-1. Add `<!-- BUILD_INSERT id="password" data-password="hiring2024" -->` to any portfolio page
+1. Add `<!-- BUILD_INSERT id="password" data-password="your-access-code" -->` to any portfolio page
 2. Run `npm run build` - password protection is automatically applied during build
 3. Share protected URL with hiring managers along with access code
 
@@ -127,7 +127,7 @@ robots.txt                              # Updated with disallow rules
 {
   "scripts": {
     "portfolio:protect": "node dev/scripts/generate-protected-portfolio.mjs",
-    "portfolio:confidential": "npm run portfolio:protect confidential-designs/ hiring2024 confidential-work"
+    "portfolio:confidential": "npm run portfolio:protect confidential-designs/ your-access-code confidential-work"
   }
 }
 ```

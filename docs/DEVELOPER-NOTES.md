@@ -126,14 +126,31 @@ This workflow eliminates the need to remember to sync docs manually and ensures 
 
 ## Password Protection System
 
-A secure password protection system for portfolio pages uses a modal dialog over a blurred, placeholder preview. Real content is only loaded after authentication.
+A secure global password protection system for portfolio pages with centralized management and session persistence.
 
-**Features:**
-- Modal dialog overlays blurred preview content
-- Real content hidden from DOM until password is entered
-- Scroll lock while modal is active
-- Integrated with site-wide CSS for consistent design
-- Template-driven via `password-protection-template.html`
+### Architecture
+- **Global Configuration**: Single password for all protected pages via `dev/env/password-config.mjs`
+- **Session Management**: 24-hour localStorage persistence across all protected pages
+- **Template-Driven UI**: Professional modal dialog via `password-protection-template.html`
+- **BUILD_INSERT Integration**: Simple `<!-- BUILD_INSERT id="password" -->` markers
+
+### Features
+- **Modal Dialog**: Clean overlay with blurred preview content
+- **Real Content Protection**: Content hidden from DOM until authentication
+- **Auto-Unlock**: Valid sessions automatically unlock content without prompts
+- **Global Password Management**: Single configuration file controls access to all protected pages
+- **Audit Integration**: "Secure" metric in audit reports with detailed protected pages list
+
+### Workflow
+1. Add `<!-- BUILD_INSERT id="password" -->` to page top
+2. Build pipeline converts to password-protected version
+3. Users enter global password once per 24-hour session
+4. All protected pages auto-unlock for valid sessions
+
+### Configuration
+- **Password**: Change `GLOBAL_PASSWORD` in `dev/env/password-config.mjs`
+- **Session Duration**: Modify `SESSION_DURATION` constant (default: 24 hours)
+- **Storage Key**: Customize `STORAGE_KEY` for localStorage
 
 ---
 

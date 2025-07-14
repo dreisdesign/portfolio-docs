@@ -2,6 +2,52 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.20] - 2025-07-14 - Global Password Protection System
+
+### Added
+- **Global Password Configuration**: Centralized password management via `dev/env/password-config.mjs`
+  - **Single Password for All Protected Pages**: Simplified from individual passwords to global portfolio password (`dr2025`)
+  - **Session Persistence**: 24-hour localStorage session across all protected pages - users only enter password once per day
+  - **Automatic Session Validation**: Smart session checking with timestamp validation and cleanup
+  - **Configurable Session Duration**: Easy adjustment of session length via configuration constant
+- **Enhanced Audit System**: Password protection tracking and reporting
+  - **"Secure" Metric**: Added security status to audit comparison tables showing count of protected pages
+  - **Protected Pages Display**: Detailed list of protected pages shown below audit comparison table
+  - **Source Directory Scanning**: Tracks password markers in source files (since they're processed out of build)
+  - **Global Password Documentation**: Clear instructions on where to change the global password
+- **Simplified Menu Workflow**: Streamlined password protection addition process
+  - **Removed Password Input Prompts**: No longer asks users to input passwords during protection process
+  - **Global Password Usage**: All protected pages automatically use the centralized global password
+  - **Clear Status Reporting**: Shows count of available vs. already protected pages
+  - **Simplified BUILD_INSERT Markers**: Reduced from `id="password" data-password="pass"` to just `id="password"`
+
+### Changed
+- **Password Protection Template**: Enhanced with localStorage session management
+  - **Auto-Unlock Functionality**: Protected pages automatically unlock for users with valid sessions
+  - **Session Storage Integration**: Seamless integration with existing password verification system
+  - **Improved UX**: Users no longer need to re-enter passwords on each page visit within 24-hour window
+- **Password Protection Scripts**: Updated to use global password configuration
+  - **Centralized Configuration Import**: All scripts now import from `dev/env/password-config.mjs`
+  - **Removed Individual Password Handling**: Scripts no longer process `data-password` attributes
+  - **Simplified Marker Detection**: Standardized detection of password protection markers
+- **Existing Protected Pages**: Updated markup to remove individual password attributes
+  - **Cleaned BUILD_INSERT Markers**: Removed `data-password` attributes from existing protected pages
+  - **Backwards Compatibility**: All existing protections continue to work with global password system
+
+### Enhanced
+- **Audit Reporting**: Comprehensive password protection visibility
+  - **Integration with Comparison Tables**: "Secure" column shows protected page counts across audit history
+  - **Detailed Protected Pages List**: Shows specific paths of all password-protected pages
+  - **Global Password Management Info**: Clear documentation on where to update the global password
+  - **Visual Formatting**: Professional formatting with emojis and clear section headers
+
+### Benefits
+- **Simplified User Experience**: Single password provides access to all protected portfolio content
+- **Persistent Sessions**: 24-hour login sessions eliminate repeated password entry
+- **Centralized Management**: Easy password updates via single configuration file
+- **Better Audit Visibility**: Clear tracking and reporting of protection status across all pages
+- **Streamlined Workflow**: Menu-driven protection addition without password input complexity
+
 ## [2.5.19] - 2025-07-14 - Advanced Password Protection Modal
 
 ### Added

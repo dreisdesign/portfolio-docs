@@ -81,7 +81,9 @@ Use these at the start of each AI response for clarity:
 - **Apply password protection:** `npm run password:protect`
   Add password protection to pages marked with BUILD_INSERT id="password"
 - **Interactive password protection:** `npm run menu` → Utilities → Add Password Protection
-  User-friendly interface for adding password protection to portfolio pages
+  User-friendly interface for adding global password protection to portfolio pages
+- **Smart audit with security tracking:** `node dev/scripts/deploy/deploy-support/utils/audit.mjs`
+  Intelligent audit with "Secure" metric and protected pages list
 - **Sync from private repo:** `sh scripts/sync-from-private.sh`
   Sync content/config from private sources
 - **Validate HTML output:** `node build-system/scripts/00-validate-html.mjs`

@@ -45,6 +45,11 @@ npm run menu          # → "New Page" to create portfolio projects
 npm run menu          # → "Insert Section" to add content blocks
 ```
 
+### Password Protection
+```bash
+npm run menu          # → "Utilities" → "Add Password Protection"
+```
+
 ### Deployment
 ```bash
 npm run deploy        # Deploy to production

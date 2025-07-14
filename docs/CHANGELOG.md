@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [2.5.17] - 2025-07-14 - Password Protection System & Interactive Menu Enhancement
 
 ### Added
 - **Password Protection System**: Implemented BUILD_INSERT-based password protection for confidential portfolio pages
@@ -11,10 +11,15 @@ All notable changes to this project will be documented in this file.
   - **Professional UI**: Clean access form with hiring manager instructions and error handling
   - **Security Features**: Client-side password hashing, content encoding, and anti-scraping protections
   - **Carousel Compatibility**: Fixed HTML entity handling to ensure carousel navigation works properly after unlocking
-
-### Changed
+- **Interactive Password Protection Utility**: Added user-friendly menu option for adding password protection to portfolio pages
+  - **File Discovery**: Automatically finds all portfolio pages and filters out already-protected ones
+  - **Password Validation**: Enforces minimum length requirements and prevents problematic characters
+  - **Confirmation Workflow**: Shows file path and masked password before applying protection
+  - **Top-Level Placement**: Correctly places password marker at very top of HTML files
+  - **Menu Integration**: Added "Add Password Protection" option to utilities submenu
 
 ### Fixed
+- **Password Marker Placement**: Fixed utility script to place password protection marker at top of file instead of after `<body>` tag
 
 ## [2.5.16] - 2025-07-09 - Documentation System Consolidation & Automation
 

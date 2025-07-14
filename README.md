@@ -75,6 +75,7 @@ npm run deploy:open   # Deploy + open site
 
 ### Password Protection
 - **Confidential Work Protection**: BUILD_INSERT-based password protection for sensitive portfolio pages
+- **Interactive Menu Utility**: User-friendly password addition through utilities menu
 - **Professional UI**: Clean access forms with hiring manager instructions
 - **Security Features**: Client-side hashing, content encoding, anti-scraping measures
 - **Build Integration**: Seamless integration with existing build pipeline
@@ -101,7 +102,7 @@ npm run build:full        # Complete 3-minute build
 
 # Content Creation
 npm run create-new        # New portfolio project
-npm run menu             # Interactive utilities
+npm run menu             # Interactive utilities & password protection
 
 # Deployment
 npm run deploy           # Deploy to production

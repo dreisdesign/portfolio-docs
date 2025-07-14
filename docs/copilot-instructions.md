@@ -80,6 +80,8 @@ Use these at the start of each AI response for clarity:
   See last 20 lines of the build log
 - **Apply password protection:** `npm run password:protect`
   Add password protection to pages marked with BUILD_INSERT id="password"
+- **Interactive password protection:** `npm run menu` → Utilities → Add Password Protection
+  User-friendly interface for adding password protection to portfolio pages
 - **Sync from private repo:** `sh scripts/sync-from-private.sh`
   Sync content/config from private sources
 - **Validate HTML output:** `node build-system/scripts/00-validate-html.mjs`

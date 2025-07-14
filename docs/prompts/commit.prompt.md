@@ -1,11 +1,21 @@
 # Prompt: Commit and Push Docs or Code to Remote
 
+## Changelog Best Practices
+
+For projects with immediate-commit workflows:
+- **Skip "Unreleased" sections** - Add changes directly to dated version sections
+- **Use today's date** when documenting new features during implementation
+- **Version immediately** - Move from documentation to commit in same session
+- This approach better reflects actual release timeline vs. having perpetual "Unreleased" sections
+
+## Documentation Update Process
+
 - Review all recent changes in the codebase (diff, staged, or unstaged).
 - Propose specific edits to all relevant `.md` documentation files:
   - `.github/copilot-instructions.md`
   - `README.md`
-  - `CHANGELOG.md`
-  - `docs/BUILD-PIPELINE.md`
+  - `CHANGELOG.md` (use dated versions, not "Unreleased")
+  - `docs/DEVELOPER-NOTES.md`
   - Any other affected docs
 - Show the proposed doc changes and ask:
   **"Apply these documentation changes and make them remote? (Y/N)"**

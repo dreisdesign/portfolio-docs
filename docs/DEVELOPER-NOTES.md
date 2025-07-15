@@ -1,6 +1,6 @@
 # Developer Notes
 
-**Updated: July 14, 2025**
+**Updated: July 15, 2025**
 
 This document contains all technical implementation details for the portfolio system, including workflows, build pipeline, scripts reference, browser fixes, and advanced implementation notes. For design, content, and UI guidelines, see [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
 
@@ -114,7 +114,7 @@ A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy
 - **How it works:**
   1. The sync script determines the correct source file path in the private repo for each `.md` file
   2. Uses `git log` to find the last commit date for that specific file
-  3. Updates the `**Updated: July 14, 2025**` line in each file before syncing to the public repo
+  3. Updates the `**Updated: July 15, 2025**` line in each file before syncing to the public repo
   4. Handles both root-level files (like `README.md`) and files in the `DOCS/` directory
 - **Format:** Dates are automatically formatted as "Month Day, YYYY" (e.g., "July 9, 2025")
 - **No manual intervention needed:** Just commit changes as usual and the sync handles date updates automatically
@@ -344,5 +344,19 @@ To run: `./bin/optimize-videos.sh`
 2. Use H.264 codec with "fast start" enabled
 3. Consider WebM format for additional compression
 4. Implement responsive video sources for different screen sizes
+
+---
+
+## 2025-07-15: Password-Protected Page Feature Parity & Overlay Robustness
+
+- Password-protected portfolio pages now preserve and re-initialize all feature CSS/JS (carousel, zoom, video, etc.)
+- Zoom overlay and modal styles are inlined for reliability and mobile-friendliness
+- No more CSS/JS duplication or missing features in protected pages
+- Build pipeline improvements:
+  - `inject-password-protection.mjs` extracts and preserves all relevant CSS/JS from original content
+  - `inject-head-lower.mjs` ensures feature CSS is injected only when needed
+  - Password-protection template only outputs preserved CSS/scripts, no hardcoded main.css
+- Overlay and modal logic is robust to dev/prod differences and works identically on protected and public pages
+- See also: `feature-zoom.css`, `password-protection-template.html`, and related build scripts
 
 ---

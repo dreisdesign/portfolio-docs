@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.21] - 2025-07-15 - Password-Protected Page Feature Parity & Overlay Robustness
+
+### Changed
+- Password-protected portfolio pages now fully preserve and re-initialize all feature CSS/JS (carousel, zoom, video, etc.)
+- Zoom overlay and modal styles are robust, inlined, and mobile-friendly
+- Eliminated CSS/JS duplication and missing features in protected pages
+- Improved build pipeline for password protection and head injection (see `inject-password-protection.mjs` and `inject-head-lower.mjs`)
+- All protected pages now visually and functionally match public portfolio pages
+
 ## [2.5.20] - 2025-07-14 - Global Password Protection System
 
 ### Added
@@ -100,7 +109,7 @@ All notable changes to this project will be documented in this file.
   - **Clean Build Logs**: Removed duplicate audit results and cleaned up legacy swift-build logs
 - **Automated Doc Date Updates**: All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process
   - Sync script automatically detects last commit date using `git log`
-  - Updates `**Updated: July 14, 2025**` line before syncing to public repository
+  - Updates `**Updated: July 15, 2025**` line before syncing to public repository
   - Handles both root-level files and files in `DOCS/` directory
   - Formats dates consistently as "Month Day, YYYY"
   - Fully functional and tested end-to-end

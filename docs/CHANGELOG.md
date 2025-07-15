@@ -1,6 +1,6 @@
 # Changelog
 
-**Note:** This changelog only shows the 10 most recent releases. For older entries, see the [Changelog Archive](archive/CHANGELOG-archive.md).
+**Note:** This changelog only shows the 10 most recent releases. For older entries, see the [Changelog Archive](./archive/CHANGELOG-archive.md).
 
 All notable changes to this project will be documented in this file.
 

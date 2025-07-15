@@ -155,6 +155,23 @@ For more details, see:
 
 To ensure consistent and high-quality code suggestions from GitHub Copilot, please follow these guidelines when accepting or reviewing AI-generated code:
 
+---
+
+## Changelog Archiving Automation (WIP)
+
+- Keep only the 10 most recent releases in [`DOCS/CHANGELOG.md`](../../DOCS/CHANGELOG.md).
+- Move older releases to [`DOCS/CHANGELOG-archive.md`](../../DOCS/CHANGELOG-archive.md).
+- Ensure archive and main changelog have no duplicate or missing entries.
+- Add or update the archive link at the top of the main changelog as needed.
+- (Planned) Automate this process with a Node.js script and a git pre-push hook:
+  - Script parses `CHANGELOG.md`, moves oldest releases to archive if >10 exist.
+  - Hook runs script before every push.
+  - Manual review is recommended after automation runs.
+
+See `dev/scripts/archive-changelog.mjs` (to be created) for implementation details.
+
+---
+
 - Always review AI-generated code for correctness, security, and compliance with project standards.
 - Test any new code or configuration changes in a safe environment before deploying to production.
 - Be cautious with accepting large code changes or unfamiliar patterns; break them down and review incrementally.

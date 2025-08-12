@@ -4,6 +4,42 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.24] - 2025-08-12 - Modular Media Zoom System & Carousel Icon Integration
+
+### Added
+- **Modular Overlay Core**: Introduced `zoom-overlay-core.js` as a unified accessible overlay foundation (focus trap, ESC handling, scroll lock) consumed by both image and video zoom modules.
+- **Video Zoom Parity**: New `zoom-video.js` delivers feature parity with image zoom (enlarged playback, placeholder fade-in, auto-play) by cloning `<source>` elements for clean playback state.
+- **Dynamic Lifecycle Binding**: MutationObserver + custom events (`protectedContentUnlocked`, `carouselsInitialized`) ensure images/videos added after initial load (carousel initialization, password unlock) are seamlessly bound without duplicates (dataset guard flags).
+
+### Changed
+- **Image Zoom Refactor**: `zoomable-image.js` updated to consume overlay core; removed legacy inline overlay logic from password-protection template.
+- **Password-Protected Page Parity**: Forced script injection guarantees zoom + carousel scripts load inside protected builds; event dispatch after unlock triggers re-binding.
+- **Carousel Navigation**: Replaced textual prev/next controls with inline currentColor SVG arrow icons; vertically centered buttons and standardized sizing.
+- **Scoped SVG Override**: Added `.carousel .carousel-button svg { width:24px; height:auto; }` in `feature-carousel.css` to neutralize broad global `.content svg` rule that previously distorted navigation icons.
+- **Logging Reduction**: Carousel verbose logs routed through a `carouselDebug` helper gated by `window.CAROUSEL_DEBUG`.
+
+### Removed
+- **Redundant Post-Unlock Zoom Tagging**: Eliminated duplicate video tagging loop in password template (single tagging + event now sufficient).
+
+### Fixed
+- **Missed Video Zoom on Protected Pages**: Videos now reliably open in overlay after unlock (binding no longer races original DOM insert).
+- **Icon Mis-Sizing**: Carousel arrows no longer inherit unintended width/height from global SVG rule.
+
+### Technical Implementation
+- Shared overlay factory returns overlay root & close logic reused by both modules.
+- Video zoom uses optimistic reveal with timeout safety net and progressive preload via IntersectionObserver.
+- Dataset idempotency flags prevent re-binding during rapid DOM mutations.
+- Event-driven architecture avoids brittle polling and keeps feature JS lean.
+
+### Impact
+- **Consistency**: Images and videos present a unified zoom experience (public + protected pages, inside carousels).
+- **Maintainability**: Overlay behavior centralized; future media types can adopt same core.
+- **Performance**: Lazy binding & conditional preload minimize network use while keeping interactions instant.
+- **DX**: Cleaner template and quieter console.
+
+### Migration Notes
+No action required. Existing pages gain video zoom automatically after rebuild. Enable debug with `window.CAROUSEL_DEBUG = true`.
+
 ## [2.5.23] - 2025-08-12 - Refined Git Image Change Detection (Script v2.0.1)
 
 ### Changed

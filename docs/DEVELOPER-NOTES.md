@@ -1,6 +1,6 @@
 # Developer Notes
 
-**Updated: July 15, 2025**
+**Updated: August 12, 2025**
 
 This document contains all technical implementation details for the portfolio system, including workflows, build pipeline, scripts reference, browser fixes, and advanced implementation notes. For design, content, and UI guidelines, see [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
 
@@ -114,7 +114,7 @@ A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy
 - **How it works:**
   1. The sync script determines the correct source file path in the private repo for each `.md` file
   2. Uses `git log` to find the last commit date for that specific file
-  3. Updates the `**Updated: July 15, 2025**` line in each file before syncing to the public repo
+  3. Updates the `**Updated: August 12, 2025**` line in each file before syncing to the public repo
   4. Handles both root-level files (like `README.md`) and files in the `DOCS/` directory
 - **Format:** Dates are automatically formatted as "Month Day, YYYY" (e.g., "July 9, 2025")
 - **No manual intervention needed:** Just commit changes as usual and the sync handles date updates automatically
@@ -309,6 +309,37 @@ The build system now creates compressed zoom variants and provides a comfortable
 - **Comfortable UX:** No blur or motion effects that could cause dizziness
 
 The zoom-optimized approach significantly reduces bandwidth usage for zoomable images while maintaining the high quality needed for detailed examination of portfolio work.
+
+---
+
+## Modular Media Zoom System (2025-08-12)
+
+### Components
+- `zoom-overlay-core.js` – Single overlay factory (focus trap, ESC, scroll lock, cleanup of prior instance)
+- `zoomable-image.js` – Image zoom (progressive reveal, pan, zoom variant usage, placeholder fade)
+- `zoom-video.js` – Video zoom (clone `<source>` nodes, skeleton placeholder, autoplay on reveal, preload escalation)
+
+### Dynamic Binding
+Late DOM insertions (carousels, password unlock) are handled via:
+1. Custom events: `carouselsInitialized`, `protectedContentUnlocked`
+2. A MutationObserver watching added nodes for `<img>` / `<video>`
+
+Each candidate guarded with dataset flags (`data-zoom-bound`, `data-zoom-video-bound`) for idempotency.
+
+### Password-Protected Pages
+Template injects the same script bundle. After unlock it dispatches `protectedContentUnlocked`; no duplicate inline zoom code needed (removed redundant post-unlock tagging loop).
+
+### Carousel Integration
+Carousel emits `carouselsInitialized` once all instances mount, allowing zoom modules to bind media inside slides without tight coupling.
+
+### SVG Navigation Icons
+Prev/next buttons now inline SVG (currentColor). A global `.content svg` rule previously distorted sizing; scoped override in `feature-carousel.css` (`.carousel .carousel-button svg { width:24px; height:auto; }`) restores correct dimensions without weakening global styles.
+
+### Debugging
+Define `window.CAROUSEL_DEBUG = true` before interaction to re-enable verbose lifecycle logging routed through a `carouselDebug()` helper.
+
+### Extensibility
+Future media types can reuse the core by supplying a renderer that appends content to the overlay container and triggers a reveal transition.
 
 ---
 

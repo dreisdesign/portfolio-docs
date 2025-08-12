@@ -1,6 +1,6 @@
 # Portfolio System
 
-**Updated: July 14, 2025**
+**Updated: August 12, 2025**
 
 A modern, maintainable UX portfolio system with automated build pipeline, responsive image processing, and comprehensive tagging system.
 
@@ -22,13 +22,14 @@ npm run menu
 ## 🎯 What This Is
 
 A complete portfolio build system featuring:
-
-- **Automated Build Pipeline** - Git-based change detection, image optimization, HTML validation
-- **Smart Image Processing** - Automatic dimension injection, responsive variants, format conversion
-- **Portfolio Tagging System** - Auto-generated tag pages and categorized navigation
-- **Swift Build** - 18-second builds vs 3+ minute full builds (17x faster)
-- **Company Logo Injection** - Automatic logo detection and linking
-- **Responsive Design** - Mobile-first, accessible, performance-optimized
+ - Automated build pipeline (validation, asset processing, audit)
+ - Git-aware swift build (dirty + staged only, optional last commit)
+ - Responsive & zoom image pipeline (Sharp variants + self-healing)
+ - Portfolio tagging & tag index generation
+ - Company logo injection & modular head templates
+ - Password protection with global session & modal security layer
+ - Automated documentation date + changelog archiving (WIP)
+ - Menu-driven workflows & page/section scaffolding
 
 ## 🚀 Common Workflows
 
@@ -69,37 +70,56 @@ npm run deploy:open   # Deploy + open site
 ## 🎨 Key Features
 
 ### Swift Build System
-- **Fast Development**: 18-second builds with git-based change detection
-- **Smart Image Processing**: Only processes changed images
-- **Self-Healing**: Auto-regenerates missing responsive variants
+Fast iterative builds driven by git state.
+
+- Fast Development: ~18s builds processing only images that actually need work
+- Default Scope: Unstaged working tree changes + staged/index changes + any images missing required variants (self-heal)
+- Skips Last Commit By Default: Prevents reprocessing freshly committed large batches
+- Opt-In Last Commit: Use `--include-last-commit` when you explicitly want the most recent commit's image edits re-validated
+- Force Mode: `--force-all` regenerates every responsive + zoom variant (baseline refresh)
+- Self-Healing: Missing or deleted variant/zoom files trigger automatic regeneration
+- Transparent Logging: Logs clearly indicate which detection scopes were active
 
 ### Portfolio Tagging
-- **Auto-Generated Tags**: Role, Platform, Audience, Company categories
-- **Tag Pages**: Individual pages for each tag with relevant projects
-- **Tag Index**: Organized, searchable tag directory
+Unified multi-category tagging (Role, Platform, Audience, Company) with:
+- Automatic tag parsing & slug generation
+- Individual tag pages with filtered cards
+- Master tag index page grouped & categorized
+- Consistent card template + +More spacer automation
+- Configurable categories / counts at script top
 
 ### Password Protection
-- **Confidential Work Protection**: BUILD_INSERT-based password protection for sensitive portfolio pages
-- **Interactive Menu Utility**: User-friendly password addition through utilities menu
-- **Professional UI**: Clean access forms with hiring manager instructions
-- **Security Features**: Client-side hashing, content encoding, anti-scraping measures
-- **Build Integration**: Seamless integration with existing build pipeline
+Global password + 24h session model:
+- BUILD_INSERT marker detection => transformation
+- Global password config (`dev/env/password-config.mjs`)
+- LocalStorage session (timestamp validation) single entry per day
+- Inline + modal based unlock flows (depending on page template)
+- Audit visibility: protected page list + Secure metric
 
 ### Advanced Security Features
+Protected pages ship only a placeholder & modal until authentication; real content injected post-verify, reducing scrape surface.
 
-- **Password Protection Modal:** Protected pages show a blurred, placeholder preview with a modal password prompt. Real content is only loaded after authentication, preventing unauthorized access via source inspection. Modal disables background scrolling and matches the site's design system.
 
 ### Automated Systems
-- **Image Dimensions**: Automatic injection using Sharp metadata
-- **Company Logos**: Auto-detection based on folder structure
-- **Responsive Images**: WebP/AVIF conversion with fallbacks
-- **Version Management**: Cache-busting for all assets
+| System | Automation |
+| ------ | ---------- |
+| Image dimensions | Sharp metadata injection (removes 100s manual attrs) |
+| Responsive variants | On-demand + regeneration for missing sizes |
+| Zoom images | Compressed full-size `-zoom` variant generation |
+| Version tokens | `{{VERSION}}` replacement post-build |
+| Logo injection | Company detection via path structure |
+| Tag pages | Generated from parsed metadata (cards + index) |
+| Doc dates | Sync to last git commit date during public sync |
+| Audit logs | Auto-archiving retaining baseline + last N |
+| Changelog curation | (Planned) auto-archive beyond 10 releases |
 
 ## 📖 Documentation
+Primary references (keep these updated):
 
-- **[DEVELOPER-NOTES.md](DOCS/DEVELOPER-NOTES.md)** - Technical implementation, build pipeline, and workflows
-- **[DESIGN-SYSTEM.md](DOCS/DESIGN-SYSTEM.md)** - UI guidelines and patterns
-- **[CHANGELOG.md](DOCS/CHANGELOG.md)** - Detailed version history
+- DEVELOPER-NOTES.md – Build pipeline internals, scripts, troubleshooting
+- DESIGN-SYSTEM.md – Typography, spacing, components
+- CHANGELOG.md – Last 10 releases (older in archive)
+
 
 ## 🛠️ Build Commands
 
@@ -116,20 +136,29 @@ npm run menu             # Interactive utilities & password protection
 # Deployment
 npm run deploy           # Deploy to production
 npm run preview:deploy   # Build + deploy + open
+
+# Image script direct flags (advanced):
+# node dev/scripts/deploy/deploy-support/scripts/01-process-images-git.mjs --include-last-commit
+# node dev/scripts/deploy/deploy-support/scripts/01-process-images-git.mjs --force-all
 ```
 
 ## 📋 Requirements
+Minimal stack.
 
-- **Node.js** 16+
-- **Sharp** (auto-installed) for image processing
-- **Git** for change detection
+- Node.js 18+ (Sharp prebuilds benefit from newer versions)
+- Git (required for change detection logic)
+- macOS/Linux recommended (scripts use POSIX shell features)
+
 
 ## 🎯 Perfect For
+Use cases:
 
-- **UX/UI Portfolios** with case studies and project showcases
-- **Design Systems** requiring consistent, maintainable components
-- **Performance-Critical Sites** with optimized images and fast builds
-- **Teams** needing automated, reliable build processes
+- UX/Design portfolios needing fast iteration
+- Case-study heavy sites with many large images
+- Private/confidential work requiring gated access
+- Designers wanting zero-CMS static workflow
+- Sharing open-source build system patterns
+
 
 ## 🔗 Public Build System
 
@@ -139,15 +168,17 @@ This system is also available as a public repository for community use:
 
 **Features**: Complete build pipeline, responsive image generation, tagging system, deployment scripts, and comprehensive documentation.
 
----
 
 ## 📝 Recent Highlights
+Recent notable updates:
 
-- ✅ **Automated Doc Date Updates** - Documentation dates sync automatically with git history
-- ✅ **Swift Build V2.0** - 17x faster builds with intelligent change detection
-- ✅ **Modular Head Injection** - Template-driven HTML head management
-- ✅ **Image Dimension Automation** - 270+ manual attributes removed, auto-injected
-- ✅ **Mobile-First Design** - Unified responsive layout across all pages
+- 2.5.23: Image pipeline refinement (skip last commit by default, new `--include-last-commit` flag)
+- Global password protection + session persistence
+- Lock icon system for protected portfolio cards
+- Modular head upper/lower injection
+- Auto image dimension injection + responsive self-heal
+- Swift Build v2.0 (git-based detection overhaul)
+
 
 *See [CHANGELOG.md](DOCS/CHANGELOG.md) for complete version history.*
 
@@ -158,6 +189,5 @@ This system is also available as a public repository for community use:
 3. **Build Issues**: See [DEVELOPER-NOTES.md](DOCS/DEVELOPER-NOTES.md) troubleshooting section
 4. **Design System**: Reference [DESIGN-SYSTEM.md](DOCS/DESIGN-SYSTEM.md) for UI patterns
 
----
 
 *This portfolio system powers [danreis.design](https://danreis.design) - a fast, accessible, and maintainable UX portfolio.*

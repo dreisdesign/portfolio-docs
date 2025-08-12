@@ -4,6 +4,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.23] - 2025-08-12 - Refined Git Image Change Detection (Script v2.0.1)
+
+### Changed
+- **Image Processing Default Behavior**: Git-based image pipeline now ignores the previous commit diff (`HEAD~1..HEAD`) by default, preventing recently committed images from being repeatedly reprocessed on every subsequent build.
+- **Detection Scope**: Now only processes images that are (a) unstaged working tree changes, (b) staged/index changes, (c) missing any responsive/zoom outputs (self‑healing), or (d) explicitly forced.
+- **Logging Clarity**: Updated logging to clearly show whether last commit changes are included.
+
+### Added
+- **`--include-last-commit` Flag**: Opt-in flag to restore prior behavior of also processing images changed in the most recent commit.
+- **Documentation**: README updated to reflect new flags and refined detection model.
+
+### Unchanged
+- **Force Mode**: `--force-all` still processes every image (e.g., for baseline regeneration).
+- **Self-Healing**: Missing variant or zoom files still trigger regeneration automatically.
+
+### Impact
+- **Faster Repeat Builds**: Avoids unnecessary reprocessing after committing large image batches.
+- **Deterministic Behavior**: Builds are stable across runs until new modifications occur or variants go missing.
+
+### Migration Notes
+No action required. Existing workflows continue to work. Use `--include-last-commit` if you depended on the old behavior for post-commit verification builds.
+
 ## [2.5.22] - 2025-08-11 - Comprehensive Lock Icon System for Password-Protected Portfolio Cards
 
 ### Added
@@ -156,7 +178,7 @@ All notable changes to this project will be documented in this file.
   - **Clean Build Logs**: Removed duplicate audit results and cleaned up legacy swift-build logs
 - **Automated Doc Date Updates**: All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process
   - Sync script automatically detects last commit date using `git log`
-  - Updates `**Updated: August 11, 2025**` line before syncing to public repository
+  - Updates `**Updated: August 12, 2025**` line before syncing to public repository
   - Handles both root-level files and files in `DOCS/` directory
   - Formats dates consistently as "Month Day, YYYY"
   - Fully functional and tested end-to-end

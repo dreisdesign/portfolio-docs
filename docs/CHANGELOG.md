@@ -4,6 +4,51 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.22] - 2025-08-11 - Comprehensive Lock Icon System for Password-Protected Portfolio Cards
+
+### Added
+- **Visual Lock Icon System**: Complete implementation of lock icons for password-protected portfolio cards across all portfolio locations
+  - **Portfolio Index Page**: Lock icons appear on password-protected cards with white color on dark background overlay
+  - **Up Next Cards**: Lock icons displayed on password-protected projects in "Up Next" sections at bottom of portfolio pages
+  - **Tag Pages**: Lock icons shown on password-protected cards within all tag listing pages
+  - **SVG Lock Icon**: Custom lock icon asset at `/assets/images/icons/lock.svg` with proper currentColor inheritance
+- **Comprehensive Password Detection**: Enhanced portfolio build system with intelligent password protection detection
+  - **BUILD_INSERT Marker Detection**: Automatic detection of `<!-- BUILD_INSERT id="password" -->` markers in source HTML
+  - **Portfolio Data Integration**: Password protection status included in portfolio metadata JSON for all card generation
+  - **Next Project Mapping Fix**: Corrected "Up Next" card generation to include password protection status from portfolio data
+
+### Enhanced
+- **Build Pipeline Integration**: Lock icon generation fully integrated into portfolio build process
+  - **Step Integration**: Lock icon injection added to portfolio build pipeline after tag processing
+  - **Conditional Generation**: Lock icons only generated for cards where `isPasswordProtected: true`
+  - **Template System**: Lock icon HTML generation via `generateLockIcon()` function with proper CSS class structure
+- **CSS Design System**: Professional lock icon styling with design system integration
+  - **Color Inheritance**: Lock icons use `fill="currentColor"` for proper CSS color inheritance
+  - **Dark Background Overlay**: Lock icons display on dark semi-transparent background for visibility
+  - **Responsive Design**: Lock icons scale appropriately across all device sizes and card layouts
+
+### Fixed
+- **SVG Color Inheritance**: Resolved lock icon color issues by changing from explicit CSS custom property references to `currentColor` values
+  - **Previous Issue**: SVG fill attributes using `fill="var(--color-black-80)"` were overriding CSS color inheritance
+  - **Solution Applied**: Updated `generateLockIcon()` function to use `fill="currentColor"` for both path and circle elements
+  - **Result**: Lock icons now properly inherit white color from parent `.card--lock-icon` CSS styling
+- **Up Next Card Data Flow**: Fixed missing password protection data in "Up Next" card generation
+  - **Root Cause**: `createNextProjectMap()` function was not including `isPasswordProtected` property from portfolio metadata
+  - **Fix Applied**: Enhanced next project mapping to include all portfolio metadata including password protection status
+  - **Impact**: "Up Next" cards now correctly display lock icons for password-protected projects
+
+### Technical Implementation
+- **generateLockIcon() Function**: Centralized lock icon HTML generation with proper CSS class structure and currentColor inheritance
+- **Portfolio Build Script**: Enhanced `06-build-portfolio.mjs` with comprehensive password detection and lock icon injection
+- **CSS Integration**: Lock icon styling integrated into existing design system with `.card--lock-icon` class
+- **Asset Management**: Lock icon SVG properly versioned and included in build asset pipeline
+
+### Impact
+- **User Experience**: Clear visual indication of password-protected content across all portfolio browsing contexts
+- **Consistent Design**: Lock icons maintain design system consistency with proper color inheritance and responsive behavior
+- **Build System Reliability**: Automated lock icon generation ensures consistent application across all password-protected content
+- **Maintainable Architecture**: Centralized lock icon generation function enables easy updates and modifications
+
 ## [2.5.21] - 2025-07-15 - Password-Protected Page Feature Parity & Overlay Robustness
 
 ### Changed
@@ -111,7 +156,7 @@ All notable changes to this project will be documented in this file.
   - **Clean Build Logs**: Removed duplicate audit results and cleaned up legacy swift-build logs
 - **Automated Doc Date Updates**: All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process
   - Sync script automatically detects last commit date using `git log`
-  - Updates `**Updated: July 15, 2025**` line before syncing to public repository
+  - Updates `**Updated: August 11, 2025**` line before syncing to public repository
   - Handles both root-level files and files in `DOCS/` directory
   - Formats dates consistently as "Month Day, YYYY"
   - Fully functional and tested end-to-end

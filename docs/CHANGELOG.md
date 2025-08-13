@@ -1,6 +1,26 @@
+
 # Changelog
 
 **Note:** This changelog only shows the 10 most recent releases. For older entries, see the [Changelog Archive](./archive/CHANGELOG-archive.md).
+
+## [2.5.25] - 2025-08-13 - Theatre Mode Overlay, White Icon, and Fade-Out Button
+
+### Added
+- **Theatre Mode Overlay for Video**: Videos now feature a dedicated Theatre Mode button (top-right, white icon) that opens a modal overlay for focused playback. Overlay is fully keyboard and mouse accessible.
+- **Button Fade-Out UX**: Theatre Mode button fades out after 2.5s of video playback, reappears on mouse movement or pause, and is always visible when paused.
+- **SVG Icon System**: Uses a custom white SVG icon (`open_in_full.svg`) for the Theatre Mode button, with robust CSS override to ensure color and spacing are correct regardless of global SVG rules.
+- **Dynamic Binding**: Overlay and button logic work on both public and password-protected pages, using MutationObserver for late-injected videos.
+
+### Fixed
+- **Overlay Robustness**: Overlay close/click logic is now reliable on all page types, with no stray references or event handler issues.
+- **SVG Color/Spacing**: Button icon is always white, with no unwanted margin or sizing issues.
+
+### Impact
+- **User Experience**: Clean, modern Theatre Mode for all videos, with minimal UI and smooth fade-out/fade-in for the button.
+- **Maintainability**: Overlay and button logic are modular, robust, and easy to extend or restyle.
+
+### Migration Notes
+No action required. All videos gain Theatre Mode automatically after rebuild. Button/icon/fade logic is fully self-contained in `zoom-video.js`.
 
 All notable changes to this project will be documented in this file.
 
@@ -214,7 +234,7 @@ No action required. Existing workflows continue to work. Use `--include-last-com
   - **Clean Build Logs**: Removed duplicate audit results and cleaned up legacy swift-build logs
 - **Automated Doc Date Updates**: All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process
   - Sync script automatically detects last commit date using `git log`
-  - Updates `**Updated: August 12, 2025**` line before syncing to public repository
+  - Updates `**Updated: August 13, 2025**` line before syncing to public repository
   - Handles both root-level files and files in `DOCS/` directory
   - Formats dates consistently as "Month Day, YYYY"
   - Fully functional and tested end-to-end

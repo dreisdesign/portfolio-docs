@@ -20,11 +20,40 @@
   - [Content & UI Text Capitalization Guidelines](#content--ui-text-capitalization-guidelines)
 - [Developer Notes](#developer-notes)
 
----
 
 ## Overview
 
 *This section has moved to [README.md](../README.md) for better discoverability and project onboarding. See the README for a high-level project summary and context.*
+
+---
+
+## Theatre Mode Video Overlay: Button & Icon Design
+
+### Theatre Mode Button
+- **Placement:** Top-right corner of each video (absolute, z-index above video controls).
+- **Trigger:** Only the button opens Theatre Mode (not video click).
+- **Fade-Out UX:**
+  - Button fades out after 2.5s of video playback for minimal distraction.
+  - Reappears on mouse movement or when video is paused.
+  - Always visible when paused.
+- **Accessibility:**
+  - Button is keyboard focusable and accessible (tab, enter/space to activate).
+  - Overlay is fully keyboard and mouse accessible (focus trap, ESC to close, scroll lock).
+
+### SVG Icon
+- **Asset:** `/assets/images/icons/open_in_full.svg` (custom white icon)
+- **Color/Spacing:**
+  - Uses `fill="currentColor"` for robust CSS color inheritance.
+  - CSS override in `feature-zoom.css` ensures icon is always white (`color: #fff !important;`) and removes unwanted margin-bottom.
+  - Not affected by global `.content svg` rules.
+- **Size:** 24x24px (scalable, matches other iconography)
+
+### Usage Pattern
+- Only one Theatre Mode button per video (guarded by `data-zoom-video-bound`).
+- Works on both public and password-protected pages (dynamic binding).
+- Button and overlay logic are modular and require no external dependencies.
+
+---
 
 ---
 

@@ -1,23 +1,50 @@
 # Developer Notes
 
-**Updated: August 12, 2025**
+**Updated: August 13, 2025**
 
 This document contains all technical implementation details for the portfolio system, including workflows, build pipeline, scripts reference, browser fixes, and advanced implementation notes. For design, content, and UI guidelines, see [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
-
 ---
 
 ## Quick Workflows
-
-This section walks you through the most common workflows for building, previewing, and deploying your portfolio using the interactive menu and build scripts.
-
-### 1. Daily Development
 - Edit your content or code in the private repo.
 - Run `npm run menu` and select "Build" for a fast, smart build.
 - Preview your changes locally with the preview server.
-
-### 2. Adding a New Portfolio Page
 - Use the menu's "New Page" option or run `npm run create-new`.
-- Follow prompts to generate a new project folder and starter files.
+
+## 2025-08-13: Theatre Mode Video Overlay System
+
+### Overview
+The Theatre Mode overlay system provides a focused, accessible video viewing experience for all portfolio videos. It is triggered by a dedicated Theatre Mode button (top-right of each video), which opens a modal overlay with a cloned video element. The overlay is always muted, has no native controls, and supports click-to-pause/play, click outside/ESC to close, and seamless resume of playback inline after closing.
+
+### Technical Implementation
+- **File:** `public_html/js/zoom-video.js`
+- **Overlay Creation:**
+  - Clicking the Theatre Mode button creates a modal overlay and clones the original video’s `<source>` elements for clean playback state.
+  - Overlay video is always muted, no native controls, and auto-plays on open.
+  - Overlay closes on click outside, ESC, or Theatre Mode button.
+  - On close, playback state (currentTime, paused/playing) is synced back to the original inline video.
+- **Button Fade-Out Logic:**
+  - Theatre Mode button fades out after 2.5s of video playback.
+  - Button reappears on mouse movement or when video is paused.
+  - Always visible when paused.
+- **SVG Icon Override:**
+  - Uses a custom white SVG icon (`open_in_full.svg`).
+  - Robust CSS override ensures icon is always white and has no unwanted margin/spacing, regardless of global SVG rules.
+- **Dynamic Binding:**
+  - Uses a MutationObserver and custom events (`protectedContentUnlocked`, `carouselsInitialized`) to bind Theatre Mode buttons to videos added after initial page load (e.g., carousels, password-protected pages).
+  - Guards with `data-zoom-video-bound` to prevent duplicate bindings.
+- **Robust Overlay Close:**
+  - Overlay close logic is reliable on both public and password-protected pages, with no stray references or event handler issues.
+- **Accessibility:**
+  - Overlay is fully keyboard and mouse accessible (focus trap, ESC, scroll lock).
+  - Button and overlay are navigable and usable via keyboard.
+
+### Maintenance Notes
+- All overlay/button logic is modular and robust to global CSS/JS changes.
+- To update the Theatre Mode button/icon, edit the SVG in `assets/images/icons/open_in_full.svg` and the CSS override in `feature-zoom.css`.
+- Overlay and button logic are self-contained in `zoom-video.js` and require no external dependencies.
+
+---
 - Add your content and assets as needed.
 
 ### 3. Tagging & Categorization
@@ -114,7 +141,7 @@ A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy
 - **How it works:**
   1. The sync script determines the correct source file path in the private repo for each `.md` file
   2. Uses `git log` to find the last commit date for that specific file
-  3. Updates the `**Updated: August 12, 2025**` line in each file before syncing to the public repo
+  3. Updates the `**Updated: August 13, 2025**` line in each file before syncing to the public repo
   4. Handles both root-level files (like `README.md`) and files in the `DOCS/` directory
 - **Format:** Dates are automatically formatted as "Month Day, YYYY" (e.g., "July 9, 2025")
 - **No manual intervention needed:** Just commit changes as usual and the sync handles date updates automatically

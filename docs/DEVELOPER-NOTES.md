@@ -158,7 +158,14 @@ This workflow eliminates the need to remember to sync docs manually and ensures 
 
 ## Password Protection System
 
+
 A secure global password protection system for portfolio pages with centralized management and session persistence.
+
+#### Updating the Global Password
+- Use the menu: `npm run menu` → Utilities → Update Global Password
+- This utility updates `dev/env/password-config.mjs` with your new password
+- **Important:** You must run a build after updating the password for changes to take effect on protected pages
+- The utility now reliably updates the correct config line (as of 2025-08-13)
 
 ### Architecture
 - **Global Configuration**: Single password for all protected pages via `dev/env/password-config.mjs`

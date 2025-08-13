@@ -1,6 +1,6 @@
 # Portfolio System
 
-**Updated: August 12, 2025**
+**Updated: August 13, 2025**
 
 A modern, maintainable UX portfolio system with automated build pipeline, responsive image processing, and comprehensive tagging system.
 
@@ -89,12 +89,14 @@ Unified multi-category tagging (Role, Platform, Audience, Company) with:
 - Configurable categories / counts at script top
 
 ### Password Protection
+
 Global password + 24h session model:
 - BUILD_INSERT marker detection => transformation
 - Global password config (`dev/env/password-config.mjs`)
 - LocalStorage session (timestamp validation) single entry per day
 - Inline + modal based unlock flows (depending on page template)
 - Audit visibility: protected page list + Secure metric
+- **Update password easily:** Use `npm run menu` → Utilities → Update Global Password. This updates the config file; run a build to apply the new password.
 
 ### Advanced Security Features
 Protected pages ship only a placeholder & modal until authentication; real content injected post-verify, reducing scrape surface.

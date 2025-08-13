@@ -12,7 +12,11 @@ This document contains all technical implementation details for the portfolio sy
 - Use the menu's "New Page" option or run `npm run create-new`.
 
 ## 2025-08-13: Theatre Mode Video Overlay System
+#### 2025-08-13 Overlay Icon Robustness Fix
 
+- **Overlay Icon Doubling Fixed:** Only the collapse button now appears in the overlay. The expand (Theatre Mode) button is never added to overlay videos, thanks to a MutationObserver guard in `bindSimpleOverlay` that skips any video inside `#zoom-video-overlay`.
+- **Root Cause:** The expand button was being added to overlay videos by the MutationObserver, which was binding to all videos, including those in the overlay. Now, overlay videos are excluded from binding.
+- **Result:** No more icon doubling or overlap. Overlay UI is robust and clean.
 ### Overview
 The Theatre Mode overlay system provides a focused, accessible video viewing experience for all portfolio videos. It is triggered by a dedicated Theatre Mode button (top-right of each video), which opens a modal overlay with a cloned video element. The overlay is always muted, has no native controls, and supports click-to-pause/play, click outside/ESC to close, and seamless resume of playback inline after closing.
 

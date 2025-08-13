@@ -1,3 +1,9 @@
+## Overlay Video Icon Pattern (2025-08-13)
+
+- **Overlay Collapse Icon:** Only the collapse icon appears in the video overlay. The expand (Theatre Mode) button is never present in the overlay, ensuring a single, clear close action for users.
+- **MutationObserver Guard:** Overlay videos are excluded from Theatre Mode button binding, preventing accidental icon doubling or overlap.
+- **Fade Logic:** Collapse icon uses the same fade-in/fade-out logic as the inline expand button, but only the icon itself triggers 100% opacity on hover/focus.
+- **Design Consistency:** This pattern ensures a clean, modern, and accessible overlay experience across all portfolio videos.
 # Portfolio Design System Documentation
 
 *Last Updated: July 9, 2025*

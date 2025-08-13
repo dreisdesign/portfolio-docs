@@ -1,6 +1,63 @@
+
+---
+**MANDATORY BUILD COMMAND FOR AI RESPONSES**
+
+**Whenever the user asks how to build, preview, or test the site, always provide this command first and foremost:**
+
+```bash
+echo "1" | npm run menu
+```
+
+- This is the ONLY correct answer for "how do I build/preview/test?"
+- Do NOT suggest `npm run build`, `npm start`, or any other command unless the user specifically asks for an alternative.
+- Always show this command in a code block, as above, at the start of your answer.
+- This guarantees the correct workflow, menu selection, and "continue" button in VS Code.
+- **Important:** If providing this command in a response, ensure it is the last thing shown to the user.
+- **Important:** Do not provide multiple commands unless explicitly requested by the user.
+
+Rather than open ended prompts such as "Let me know if this fully resolves the issue or if you need further tweaks!", provide specific follow-up questions or actions.
+---
+
+### **AI Chat Task Continuation Policy**
+
+**AI Chat: When prompting the user to preview or test, always use the following command to ensure the menu item is pre-selected and the interactive "continue" button is shown in the terminal:**
+
+```bash
+echo "1" | npm run menu
+```
+
+This is the default and preferred workflow for all AI-driven development and testing. It guarantees:
+- The menu runs with option 1 pre-selected (local development)
+- The "continue" button is always provided in the VS Code terminal for the next step
+
+- **After completing a task, always review the conversation for any recently discussed but incomplete tasks.**
+- **If there are pending tasks, immediately return to them and provide the next command, step, or context needed to continue.**
+- **Never end your turn without either fully completing all tasks or clearly providing the next actionable step for the user.**
+		- **After completing a task (and only when you believe the task is fully complete), always ask the user to confirm if the task is complete, and provide actionable next-step options such as:**
+		- **1. Yes, update docs, ready to commit**
+		- **2. No, keep trying**
+		- **3. No, review and consider more options**
+		- **4. Return to previous work (list recent tasks that would make sense to return to)**
+     - **5. Update documentation and commit changes
+          ** AI Chat: If user chooses "5", search for relevant documentation to update, then proceed.
+			- *(Options can be dynamic and context-aware as appropriate)*
+				- **If there are options, always provide them as explicit numbered choices for the user to pick.**
+					- **At the end of the options, add:**
+						- *Choose an option like "1" or "2" or say "c" to continue with something else.*
+                           - **If the user picks "c" continue with the next logical step in the conversation.**
+
 ---
 applyTo: '**'
 ---
+
+# Development Workflow & VS Code Instructions
+
+**Current workflows and development guidelines for the repo.**
+
+## 🚀 **Quick Start Commands**
+
+### **Menu-Driven Development (Recommended)**
+
 Coding standards, domain knowledge, and preferences that AI should follow.
 
 Please start every response with an emoji

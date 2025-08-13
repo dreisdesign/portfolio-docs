@@ -14,6 +14,7 @@
 ### Fixed
 - **Overlay Robustness**: Overlay close/click logic is now reliable on all page types, with no stray references or event handler issues.
 - **SVG Color/Spacing**: Button icon is always white, with no unwanted margin or sizing issues.
+- **Overlay Icon Doubling**: Only the collapse button now appears in the overlay. The expand (Theatre Mode) button is never added to overlay videos, preventing icon overlap and UI confusion. MutationObserver now guards against binding to overlay videos.
 
 ### Impact
 - **User Experience**: Clean, modern Theatre Mode for all videos, with minimal UI and smooth fade-out/fade-in for the button.

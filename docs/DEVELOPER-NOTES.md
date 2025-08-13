@@ -54,6 +54,7 @@ The Theatre Mode overlay system provides a focused, accessible video viewing exp
 ### 3. Tagging & Categorization
 - Use standardized tag markup in your HTML (see README for details).
 - The build system will automatically generate tag pages and indexes.
+- **2025-08-13:** All Dataxu and MikMak portfolio pages now use only canonical tags (spelling/case/category) for TagCategory1, TagCategory2, and TagCategory3. TagCategory3 tags are alphabetized for consistency. "Technical Documentation" tag has been added to all pages where engineering handoff or detailed documentation was produced. See CHANGELOG for details.
 
 ### 4. Syncing Docs to Public Repo
 - Update or add docs in `DOCS/`.

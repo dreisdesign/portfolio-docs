@@ -3,6 +3,37 @@
 
 **Note:** This changelog only shows the 10 most recent releases. For older entries, see the [Changelog Archive](./archive/CHANGELOG-archive.md).
 
+
+
+## [2.5.27] - 2025-08-13 - Tag Normalization & Technical Documentation Tag Expansion (MikMak & Dataxu)
+
+### Changed
+- **Tag Normalization:** Alphabetized TagCategory3 (Approach & Deliverables) tags for all Dataxu portfolio pages for consistency with canonical tag index.
+- **Technical Documentation Tag Expansion:** Added "Technical Documentation" to TagCategory3 for MikMak VIP User Testing, MikMak Custom Report Builder, LogMeIn Central Flow, and other relevant pages where engineering handoff or detailed documentation was produced.
+- **Review & Cleanup:** Ensured all tags on Dataxu, MikMak, and LogMeIn pages match canonical spelling, case, and category. No non-canonical tags remain.
+
+### Impact
+- **Filtering & Navigation:** Tag-based filtering and tag pages are now fully reliable and consistent for all Dataxu and MikMak projects.
+- **Maintainability:** Future tag edits are easier and less error-prone; canonical tag list is enforced across all portfolio content.
+
+### Migration Notes
+No action required. All tag changes are live after rebuild. Review tag blocks in portfolio pages for canonical, alphabetized tags and expanded Technical Documentation coverage.
+
+
+### Changed
+- **Tag Normalization:** All MikMak and LogMeIn portfolio pages now use only canonical tags for TagCategory1, TagCategory2, and TagCategory3, matching the public tag index for spelling and case.
+- **Alphabetized TagCategory3:** All TagCategory3 (Approach & Deliverables) tags are now alphabetized for consistency and clarity across all relevant pages.
+- **Role Tag Consistency:** Replaced non-canonical role tags (e.g., "UX/UI Design") with canonical tags (e.g., "Product Designer") in campaign-manager.
+- **Added Missing TagCategory2:** Added canonical TagCategory2 ("B2B Software, E-Commerce, Responsive Web") to LogMeIn new-gotomeeting page for consistency.
+
+### Impact
+- **Filtering & Navigation:** Tag-based filtering and tag pages are now fully reliable and consistent for all MikMak and LogMeIn projects.
+- **Maintainability:** Future tag edits are easier and less error-prone; canonical tag list is enforced across all portfolio content.
+
+### Migration Notes
+No action required. All tag changes are live after rebuild. Review tag blocks in portfolio pages for canonical, alphabetized tags.
+
+---
 ## [2.5.25] - 2025-08-13 - Theatre Mode Overlay, White Icon, and Fade-Out Button
 
 ### Added

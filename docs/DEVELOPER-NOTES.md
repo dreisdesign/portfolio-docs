@@ -1,6 +1,6 @@
 # Developer Notes
 
-**Updated: August 13, 2025**
+**Updated: August 15, 2025**
 
 This document contains all technical implementation details for the portfolio system, including workflows, build pipeline, scripts reference, browser fixes, and advanced implementation notes. For design, content, and UI guidelines, see [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
 ---
@@ -10,6 +10,9 @@ This document contains all technical implementation details for the portfolio sy
 - Run `npm run menu` and select "Build" for a fast, smart build.
 - Preview your changes locally with the preview server.
 - Use the menu's "New Page" option or run `npm run create-new`.
+
+## Feature Documentation
+- **2025-08-15:** ["New" Badge for Recently Added Pages](FEATURES/2025-08-15-new-badge.md) _(upcoming)_
 
 ## 2025-08-13: Theatre Mode Video Overlay System
 #### 2025-08-13 Overlay Icon Robustness Fix
@@ -146,7 +149,7 @@ A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy
 - **How it works:**
   1. The sync script determines the correct source file path in the private repo for each `.md` file
   2. Uses `git log` to find the last commit date for that specific file
-  3. Updates the `**Updated: August 13, 2025**` line in each file before syncing to the public repo
+  3. Updates the `**Updated: August 15, 2025**` line in each file before syncing to the public repo
   4. Handles both root-level files (like `README.md`) and files in the `DOCS/` directory
 - **Format:** Dates are automatically formatted as "Month Day, YYYY" (e.g., "July 9, 2025")
 - **No manual intervention needed:** Just commit changes as usual and the sync handles date updates automatically

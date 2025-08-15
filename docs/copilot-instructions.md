@@ -1,5 +1,9 @@
 
 ---
+**AI CHAT TASK UPDATING TIMESTAMPS**
+Always be sure to update relevant timestamps in a doc after editing the doc.
+
+
 **MANDATORY BUILD COMMAND FOR AI RESPONSES**
 
 **Whenever the user asks how to build, preview, or test the site, always provide this command first and foremost:**

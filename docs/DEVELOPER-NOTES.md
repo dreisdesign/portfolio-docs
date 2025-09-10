@@ -1,3 +1,9 @@
+## 2025-09-10: Pan/Zoom Overlay - No Snap on Release
+
+- Drag-to-pan overlay now leaves the image exactly where you let go (no snap/jump on release)
+- Snap-to-edge logic removed from drag end handler
+- Panning is still clamped to viewport bounds for robust UX
+- See CHANGELOG.md for user-facing summary
 ## 2025-09-10: Zoomable Image Overlay Revert
 
 The zoomable image overlay logic was reverted to the classic, robust drag-to-pan version (commit 5222412) after recent experimental changes (mouse-move panning, natural/original size zoom) caused images to disappear or pan out of bounds. The current implementation uses:

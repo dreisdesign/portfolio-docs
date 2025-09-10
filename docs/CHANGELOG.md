@@ -1,3 +1,16 @@
+# [2.5.29] - 2025-09-10 - Pan/Zoom Overlay: No Snap on Release
+
+### Fixed
+- **Zoomable Image Overlay:** Drag-to-pan now leaves the image exactly where you release it—no more snap or jump after letting go.
+- **Pan Clamping:** Panning is still clamped to prevent dragging the image out of bounds.
+
+### Impact
+- **User Experience:** Panning feels natural and precise; image never moves unexpectedly after drag.
+- **Reliability:** Overlay pan/zoom is robust and matches user expectations.
+
+### Migration Notes
+No action required. All zoomable images have improved pan/zoom after rebuild.
+
 # [2.5.28] - 2025-09-10 - Restore Classic Drag-to-Pan Zoomable Image Logic
 
 ### Fixed

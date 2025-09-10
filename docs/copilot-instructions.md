@@ -214,6 +214,14 @@ For more details, see:
 
 # GitHub Copilot Instructions
 
+---
+**AI FILE SYSTEM LIMITATION POLICY**
+
+- If an action requires deleting, moving, or renaming files, and the AI does not have the ability to perform it directly, the AI must clearly state this limitation.
+- In such cases, the AI should provide the exact shell command for the user to run manually.
+- The AI must never claim to have deleted, moved, or renamed files if it cannot actually do so.
+---
+
 To ensure consistent and high-quality code suggestions from GitHub Copilot, please follow these guidelines when accepting or reviewing AI-generated code:
 
 ---

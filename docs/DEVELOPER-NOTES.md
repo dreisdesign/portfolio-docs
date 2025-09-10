@@ -1,6 +1,15 @@
+## 2025-09-10: Zoomable Image Overlay Revert
+
+The zoomable image overlay logic was reverted to the classic, robust drag-to-pan version (commit 5222412) after recent experimental changes (mouse-move panning, natural/original size zoom) caused images to disappear or pan out of bounds. The current implementation uses:
+
+- 2x zoom (not natural/original size)
+- Drag-to-pan only (no mouse-move panning)
+- Proven transform order and clamping
+
+This version is stable and reliable. If future enhancements are needed, start from this base.
 # Developer Notes
 
-**Updated: August 15, 2025**
+**Updated: September 10, 2025**
 
 This document contains all technical implementation details for the portfolio system, including workflows, build pipeline, scripts reference, browser fixes, and advanced implementation notes. For design, content, and UI guidelines, see [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
 ---
@@ -149,7 +158,7 @@ A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy
 - **How it works:**
   1. The sync script determines the correct source file path in the private repo for each `.md` file
   2. Uses `git log` to find the last commit date for that specific file
-  3. Updates the `**Updated: August 15, 2025**` line in each file before syncing to the public repo
+  3. Updates the `**Updated: September 10, 2025**` line in each file before syncing to the public repo
   4. Handles both root-level files (like `README.md`) and files in the `DOCS/` directory
 - **Format:** Dates are automatically formatted as "Month Day, YYYY" (e.g., "July 9, 2025")
 - **No manual intervention needed:** Just commit changes as usual and the sync handles date updates automatically

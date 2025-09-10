@@ -1,3 +1,16 @@
+# [2.5.28] - 2025-09-10 - Restore Classic Drag-to-Pan Zoomable Image Logic
+
+### Fixed
+- **Zoomable Image Overlay:** Reverted to the proven drag-to-pan, 2x zoom logic from commit 5222412.
+- **Pan/Zoom Robustness:** Restores transform order and clamping that prevents images from disappearing or panning out of bounds.
+- **Removed Experimental Features:** Mouse-move panning and natural/original size zoom are not present in this version.
+
+### Impact
+- **Reliability:** Zoomable images now work as expected with no risk of disappearing or erratic pan/zoom behavior.
+- **User Experience:** Click to zoom (2x), drag to pan, click again to zoom out—simple and robust.
+
+### Migration Notes
+No action required. All zoomable images use the classic, reliable drag-to-pan overlay after rebuild.
 
 # Changelog
 
@@ -266,7 +279,7 @@ No action required. Existing workflows continue to work. Use `--include-last-com
   - **Clean Build Logs**: Removed duplicate audit results and cleaned up legacy swift-build logs
 - **Automated Doc Date Updates**: All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process
   - Sync script automatically detects last commit date using `git log`
-  - Updates `**Updated: August 13, 2025**` line before syncing to public repository
+  - Updates `**Updated: September 10, 2025**` line before syncing to public repository
   - Handles both root-level files and files in `DOCS/` directory
   - Formats dates consistently as "Month Day, YYYY"
   - Fully functional and tested end-to-end

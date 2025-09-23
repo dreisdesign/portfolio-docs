@@ -3,7 +3,7 @@
 # Enhanced Portfolio Tag Categorization Plan
 
 *Created: June 18, 2025*
-*Updated: June 19, 2025*
+*Updated: September 23, 2025*
 *Status: Plan Complete - Ready for Implementation*
 
 ## Executive Summary
@@ -29,7 +29,7 @@ Describes the primary function and responsibilities held during the project.
 
 **Example Tags:**
 - Product Designer
-- UX Designer
+- Product Designer
 - UI Designer
 - Visual Designer
 - Design Lead

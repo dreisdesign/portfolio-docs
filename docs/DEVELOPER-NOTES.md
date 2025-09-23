@@ -15,7 +15,7 @@ The zoomable image overlay logic was reverted to the classic, robust drag-to-pan
 This version is stable and reliable. If future enhancements are needed, start from this base.
 # Developer Notes
 
-**Updated: September 10, 2025**
+**Updated: September 23, 2025**
 
 This document contains all technical implementation details for the portfolio system, including workflows, build pipeline, scripts reference, browser fixes, and advanced implementation notes. For design, content, and UI guidelines, see [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
 ---
@@ -25,6 +25,13 @@ This document contains all technical implementation details for the portfolio sy
 - Run `npm run menu` and select "Build" for a fast, smart build.
 - Preview your changes locally with the preview server.
 - Use the menu's "New Page" option or run `npm run create-new`.
+
+## 2025-09-23: Copy & Build Canonicalization Note
+
+- **deploy:copy changed to overlay copy (rsync):** The `deploy:copy` npm script now performs a non-destructive overlay copy using `rsync -av public_html/ build/temp/public_html/`. This preserves previously-generated assets (responsive variants, zoom images, video placeholders) across incremental builds for much faster iteration.
+- **Canonicalization step added to `build.mjs`:** To prevent production 404s caused by top-level directory casing mismatches (for example `Labs/` vs `labs/` on case-sensitive hosts), the build now canonicalizes top-level directories under `build/temp/public_html` to lowercase immediately after the copy step. This merge/rename is safe and will merge existing lowercase directories when needed.
+- **Why both:** The overlay copy preserves build cache and speeds up incremental builds; the canonicalization prevents stale/case-mismatch artifacts from producing incorrect URLs on case-sensitive production hosts.
+- **What to watch for:** If your CI environment does not have `rsync` available, the build will still work but you may want to implement a Node-based overlay copy or ensure `rsync` is present in your CI image.
 
 ## Feature Documentation
 - **2025-08-15:** ["New" Badge for Recently Added Pages](FEATURES/2025-08-15-new-badge.md) _(upcoming)_
@@ -164,7 +171,7 @@ A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy
 - **How it works:**
   1. The sync script determines the correct source file path in the private repo for each `.md` file
   2. Uses `git log` to find the last commit date for that specific file
-  3. Updates the `**Updated: September 10, 2025**` line in each file before syncing to the public repo
+  3. Updates the `**Updated: September 23, 2025**` line in each file before syncing to the public repo
   4. Handles both root-level files (like `README.md`) and files in the `DOCS/` directory
 - **Format:** Dates are automatically formatted as "Month Day, YYYY" (e.g., "July 9, 2025")
 - **No manual intervention needed:** Just commit changes as usual and the sync handles date updates automatically

@@ -198,6 +198,19 @@ No action required. Existing workflows continue to work. Use `--include-last-com
 
 ### Added
 - **Global Password Configuration**: Centralized password management via `dev/env/password-config.mjs`
+
+## [2.5.30] - 2025-09-23 - Build Copy Overlay & Canonicalization
+
+### Changed
+- **Overlay Copy for Build:** `deploy:copy` now uses an rsync overlay (`rsync -av public_html/ build/temp/public_html/`) to preserve generated assets across incremental builds. This restores incremental-speed benefits (responsive variants, zoom images, video placeholders) while keeping the copy step reliable.
+- **Canonicalization of Top-Level Build Directories:** The main `build.mjs` script now canonicalizes top-level directories under `build/temp/public_html` to lowercase immediately after the copy step to avoid case-mismatch 404s on case-sensitive production filesystems (e.g., `Labs/` → `labs/`).
+
+### Impact
+- **Faster Incremental Builds:** Reusing previously-generated assets reduces build time during iterative development.
+- **Safer Deploys:** Canonicalization prevents silent URL mismatches caused by directory name casing differences between developer machines and production.
+
+### Notes
+- If your CI runner doesn't include `rsync`, consider the Node-based overlay fallback or ensure `rsync` is available in the CI image.
   - **Single Password for All Protected Pages**: Simplified from individual passwords to global portfolio password (`dr2025`)
   - **Session Persistence**: 24-hour localStorage session across all protected pages - users only enter password once per day
   - **Automatic Session Validation**: Smart session checking with timestamp validation and cleanup
@@ -292,7 +305,7 @@ No action required. Existing workflows continue to work. Use `--include-last-com
   - **Clean Build Logs**: Removed duplicate audit results and cleaned up legacy swift-build logs
 - **Automated Doc Date Updates**: All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process
   - Sync script automatically detects last commit date using `git log`
-  - Updates `**Updated: September 10, 2025**` line before syncing to public repository
+  - Updates `**Updated: September 23, 2025**` line before syncing to public repository
   - Handles both root-level files and files in `DOCS/` directory
   - Formats dates consistently as "Month Day, YYYY"
   - Fully functional and tested end-to-end

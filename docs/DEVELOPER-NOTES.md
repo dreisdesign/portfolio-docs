@@ -15,7 +15,7 @@ The zoomable image overlay logic was reverted to the classic, robust drag-to-pan
 This version is stable and reliable. If future enhancements are needed, start from this base.
 # Developer Notes
 
-**Updated: September 23, 2025**
+**Updated: October 15, 2025**
 
 This document contains all technical implementation details for the portfolio system, including workflows, build pipeline, scripts reference, browser fixes, and advanced implementation notes. For design, content, and UI guidelines, see [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
 ---
@@ -25,6 +25,11 @@ This document contains all technical implementation details for the portfolio sy
 - Run `npm run menu` and select "Build" for a fast, smart build.
 - Preview your changes locally with the preview server.
 - Use the menu's "New Page" option or run `npm run create-new`.
+
+
+## 2025-10-15: Navigation Label Change
+
+- **Labs → AI:** The navigation label for the Labs section was changed from "Labs" to "AI" in the main navigation template (`inject-nav.mjs`). This affects the visible nav link but not the route (`/labs/`).
 
 ## 2025-09-23: Copy & Build Canonicalization Note
 
@@ -171,7 +176,7 @@ A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy
 - **How it works:**
   1. The sync script determines the correct source file path in the private repo for each `.md` file
   2. Uses `git log` to find the last commit date for that specific file
-  3. Updates the `**Updated: September 23, 2025**` line in each file before syncing to the public repo
+  3. Updates the `**Updated: October 15, 2025**` line in each file before syncing to the public repo
   4. Handles both root-level files (like `README.md`) and files in the `DOCS/` directory
 - **Format:** Dates are automatically formatted as "Month Day, YYYY" (e.g., "July 9, 2025")
 - **No manual intervention needed:** Just commit changes as usual and the sync handles date updates automatically

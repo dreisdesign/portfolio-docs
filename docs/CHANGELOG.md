@@ -1,3 +1,24 @@
+# [2.6.0] - 2026-01-28 - Custom Company Support & Modular Config
+
+### Added
+- **Custom Company Support:** "Create New Page" script now supports a "Custom" option, allowing projects to be created for any company name (e.g., "GrowProgress") without hardcoded script updates.
+- **Centralized Configuration:** Created `dev/env/portfolio-config.mjs` to serve as the single source of truth for:
+  - Company sort order (Portfolio Index & Navigation)
+  - Tag category definitions
+  - Tag display settings (Tags per card, allowed categories)
+
+### Changed
+- **Build System Refactor:** Updated `06-build-portfolio.mjs` to import settings from `portfolio-config.mjs` instead of using hardcoded values.
+- **Company Sorting:** Updates to company order can now be made instantly in `portfolio-config.mjs` without modifying logic scripts.
+- **Project Structure:** Verified custom company project scaffolding with "GrowProgress" test case.
+
+### Impact
+- **Maintainability:** Adding new companies or changing sort order is now a configuration change, not a code change.
+- **Flexibility:** The system is no longer limited to the original 3 companies.
+
+### Migration Notes
+No action required. The build system automatically uses the new configuration file.
+
 # [2.5.29] - 2025-09-10 - Pan/Zoom Overlay: No Snap on Release
 
 ### Fixed
@@ -305,7 +326,7 @@ No action required. Existing workflows continue to work. Use `--include-last-com
   - **Clean Build Logs**: Removed duplicate audit results and cleaned up legacy swift-build logs
 - **Automated Doc Date Updates**: All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process
   - Sync script automatically detects last commit date using `git log`
-  - Updates `**Updated: September 23, 2025**` line before syncing to public repository
+  - Updates `**Updated: January 28, 2026**` line before syncing to public repository
   - Handles both root-level files and files in `DOCS/` directory
   - Formats dates consistently as "Month Day, YYYY"
   - Fully functional and tested end-to-end

@@ -1,3 +1,9 @@
+## 2026-01-28: Portfolio Configuration System
+
+- **New Config File:** `dev/env/portfolio-config.mjs` now controls company ordering and tag display settings.
+- **Custom Companies:** The "New Page" script now accepts custom company names. New companies will default to the bottom of the list unless added to `COMPANY_ORDER` in the config file.
+- **Migration:** All hardcoded valid/sort logic in `06-build-portfolio.mjs` has been replaced with imports from this config.
+
 ## 2025-09-10: Pan/Zoom Overlay - No Snap on Release
 
 - Drag-to-pan overlay now leaves the image exactly where you let go (no snap/jump on release)
@@ -15,7 +21,7 @@ The zoomable image overlay logic was reverted to the classic, robust drag-to-pan
 This version is stable and reliable. If future enhancements are needed, start from this base.
 # Developer Notes
 
-**Updated: October 15, 2025**
+**Updated: January 28, 2026**
 
 This document contains all technical implementation details for the portfolio system, including workflows, build pipeline, scripts reference, browser fixes, and advanced implementation notes. For design, content, and UI guidelines, see [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
 ---
@@ -176,7 +182,7 @@ A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy
 - **How it works:**
   1. The sync script determines the correct source file path in the private repo for each `.md` file
   2. Uses `git log` to find the last commit date for that specific file
-  3. Updates the `**Updated: October 15, 2025**` line in each file before syncing to the public repo
+  3. Updates the `**Updated: January 28, 2026**` line in each file before syncing to the public repo
   4. Handles both root-level files (like `README.md`) and files in the `DOCS/` directory
 - **Format:** Dates are automatically formatted as "Month Day, YYYY" (e.g., "July 9, 2025")
 - **No manual intervention needed:** Just commit changes as usual and the sync handles date updates automatically

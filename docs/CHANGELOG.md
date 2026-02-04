@@ -1,3 +1,19 @@
+# [2.6.1] - 2026-02-04 - Zoom Fix for Protected Pages & Embedded Design Teaser
+
+### Fixed
+- **Zoomable Image Script:** Refactored `zoomable-image.js` to be event-driven, properly handling password-protected content injected asynchronously. Use `window.initZoomableImages()` for manual re-init.
+- **Password Protection Template:** Corrected class name from `.zoomable` to `.zoomable-image` in `password-protection-template.html` to match script selector.
+
+### Added
+- **Design System Teaser:** Added an embedded "teaser" iframe for the GrowProgress design system colors page, allowing inline preview of the standalone style guide.
+
+### Impact
+- **Reliability:** Zoom features now work reliably on password-protected pages after unlock.
+- **UX:** Users can preview the style guide structure before clicking through to the full view.
+
+### Migration Notes
+No action required.
+
 # [2.6.0] - 2026-01-28 - Custom Company Support & Modular Config
 
 ### Added
@@ -326,7 +342,7 @@ No action required. Existing workflows continue to work. Use `--include-last-com
   - **Clean Build Logs**: Removed duplicate audit results and cleaned up legacy swift-build logs
 - **Automated Doc Date Updates**: All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process
   - Sync script automatically detects last commit date using `git log`
-  - Updates `**Updated: January 28, 2026**` line before syncing to public repository
+  - Updates `**Updated: February 4, 2026**` line before syncing to public repository
   - Handles both root-level files and files in `DOCS/` directory
   - Formats dates consistently as "Month Day, YYYY"
   - Fully functional and tested end-to-end

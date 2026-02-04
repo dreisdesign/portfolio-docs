@@ -1,3 +1,29 @@
+# [2.6.2] - 2026-02-04 - Style Guide Overlay for GrowProgress Design System
+
+### Added
+- **Design System Overlay Modal**: Created external script `/js/style-guide-overlay.js` that intercepts "View Full Style Guide" button clicks and opens the design system in a modal overlay instead of a new browser tab
+- **Event-Driven Script Binding**: Script uses event listeners for both `DOMContentLoaded` and `protectedContentUnlocked` to work on both public and password-protected pages
+- **Password Protection Whitelist**: Updated `inject-password-protection.mjs` to preserve `/js/style-guide-overlay.js` when applying password protection, ensuring the overlay feature works on protected pages
+
+### Changed
+- **Button Styling**: Replaced inline `style` attributes on "View Full Style Guide" button with semantic `.button` CSS class for consistency with design system
+
+### Fixed
+- **Protected Page Script Preservation**: Extended password protection script filtering to include external scripts needed for interactive features
+
+### Technical Details
+- **Script Location**: [/public_html/js/style-guide-overlay.js](public_html/js/style-guide-overlay.js)
+- **Whitelist Update**: Lines ~80-90 in [inject-password-protection.mjs](dev/scripts/deploy/deploy-support/password-protection/inject-password-protection.mjs)
+- **Button Markup**: [GrowProgress case study page](public_html/portfolio/growprogress/ui-ux-audit-for-commercial-readiness/index.html) now uses `class="button"` instead of inline styles
+
+### Impact
+- **User Experience**: Users can browse the design system in a focused modal without leaving the portfolio page
+- **Accessibility**: Overlay supports keyboard navigation (ESC to close) and click-outside-to-close behavior
+- **Compatibility**: Works seamlessly on both public and password-protected portfolio pages
+
+### Migration Notes
+No action required. Style guide overlay is automatic for all GrowProgress portfolio pages.
+
 # [2.6.1] - 2026-02-04 - Zoom Fix for Protected Pages & Embedded Design Teaser
 
 ### Fixed
@@ -65,6 +91,8 @@ No action required. All zoomable images use the classic, reliable drag-to-pan ov
 # Changelog
 
 **Note:** This changelog only shows the 10 most recent releases. For older entries, see the [Changelog Archive](./archive/CHANGELOG-archive.md).
+
+**Updated: February 4, 2026**
 
 
 

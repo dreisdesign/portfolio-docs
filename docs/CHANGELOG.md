@@ -1,3 +1,30 @@
+# [2.6.3] - 2026-02-10 - Automated Local Scraper & Password Protection Build Flag
+
+### Added
+- **Automated Site Scraping**: New `scrape-local-auto.mjs` unifies build, server startup, scraping, and cleanup into a single command (`npm run scrape:local:auto`)
+- **Dynamic Port Detection**: Server port automatically detected from process output, eliminating hard-coded port assumptions
+- **Password Protection Build Flag**: `SKIP_PASSWORD_PROTECTION` environment variable allows skipping password protection during testing/scraping
+
+### Changed
+- **Build System**: Modified `build.mjs` to respect `SKIP_PASSWORD_PROTECTION` flag, enabling local content scraping without authentication barriers
+- **Scraper Detection**: Updated password detection logic to check for actual modal HTML (`id="password-modal"`) rather than build markers
+- **Menu Simplification**: Consolidated local scraping options—removed manual workflow, kept only automated version
+
+### Removed
+- **Manual Local Scraper**: Deprecated `scrape-site-content-local.mjs` (two-terminal workflow) in favor of automated orchestration
+- **npm script**: Removed `scrape:local` script from package.json
+
+### Fixed
+- **Password-Protected Content**: Local scraper now captures full content from password-protected pages when `SKIP_PASSWORD_PROTECTION=true`
+- **Port Flexibility**: Script no longer assumes port 3000; detects actual server port dynamically
+
+### Impact
+- **User Experience**: Single-command workflow replaces manual multi-terminal setup
+- **Reliability**: Dynamic port detection improves robustness across different environments
+- **Content Access**: All portfolio content (including protected pages) now accessible via local scrape
+
+---
+
 # [2.6.2] - 2026-02-04 - Style Guide Overlay for GrowProgress Design System
 
 ### Added
@@ -92,7 +119,7 @@ No action required. All zoomable images use the classic, reliable drag-to-pan ov
 
 **Note:** This changelog only shows the 10 most recent releases. For older entries, see the [Changelog Archive](./archive/CHANGELOG-archive.md).
 
-**Updated: February 4, 2026**
+**Updated: February 10, 2026**
 
 
 
@@ -370,7 +397,7 @@ No action required. Existing workflows continue to work. Use `--include-last-com
   - **Clean Build Logs**: Removed duplicate audit results and cleaned up legacy swift-build logs
 - **Automated Doc Date Updates**: All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process
   - Sync script automatically detects last commit date using `git log`
-  - Updates `**Updated: February 4, 2026**` line before syncing to public repository
+  - Updates `**Updated: February 10, 2026**` line before syncing to public repository
   - Handles both root-level files and files in `DOCS/` directory
   - Formats dates consistently as "Month Day, YYYY"
   - Fully functional and tested end-to-end

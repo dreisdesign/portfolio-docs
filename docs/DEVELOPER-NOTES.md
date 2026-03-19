@@ -1,3 +1,17 @@
+## 2026-03-18: 3D Models Page — Masonry Grid
+
+**Completed:** 2026-03-19
+
+- **New page:** `/3d/` showcasing all 36 Printables.com iframe embeds for 3D print models
+- **New reusable component:** `feature-masonry.css` — generic `.masonry-grid` / `.masonry-card` CSS Grid masonry with `aspect-ratio` scaling, reusable on any page
+- **New page CSS:** `page-3d.css` — 3D page layout overrides (no sidebar)
+- **Responsive:** `auto-fill minmax(360px, 1fr)` — columns form naturally; pure CSS, zero JS
+- **Aspect ratio scaling:** iframes have no `height` attribute — CSS `aspect-ratio` per size class scales height proportionally with column width (no clipping)
+- **Nav link:** "3D" added to global nav between AI and About
+- **Utility script:** `dev/scripts/utilities/update-3d-models.mjs` — fetches models from Printables GraphQL API, appends new cards to `3d/index.html`, re-sorts to API order (newest first). Run via Utilities menu or `npm run update:3d-models`
+- **Source folder:** `public_html/3d/` (lowercase — prevents macOS case-insensitive FS bug in build canonicalization)
+- See [FEATURES/2026-03-18-3d-models-page/README.md](FEATURES/2026-03-18-3d-models-page/README.md)
+
 ## 2026-01-28: Portfolio Configuration System
 
 - **New Config File:** `dev/env/portfolio-config.mjs` now controls company ordering and tag display settings.
@@ -21,7 +35,7 @@ The zoomable image overlay logic was reverted to the classic, robust drag-to-pan
 This version is stable and reliable. If future enhancements are needed, start from this base.
 # Developer Notes
 
-**Updated: January 28, 2026**
+**Updated: March 19, 2026**
 
 This document contains all technical implementation details for the portfolio system, including workflows, build pipeline, scripts reference, browser fixes, and advanced implementation notes. For design, content, and UI guidelines, see [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
 ---
@@ -182,7 +196,7 @@ A pre-push git hook automatically runs the docs sync script (`dev/scripts/deploy
 - **How it works:**
   1. The sync script determines the correct source file path in the private repo for each `.md` file
   2. Uses `git log` to find the last commit date for that specific file
-  3. Updates the `**Updated: January 28, 2026**` line in each file before syncing to the public repo
+  3. Updates the `**Updated: March 19, 2026**` line in each file before syncing to the public repo
   4. Handles both root-level files (like `README.md`) and files in the `DOCS/` directory
 - **Format:** Dates are automatically formatted as "Month Day, YYYY" (e.g., "July 9, 2025")
 - **No manual intervention needed:** Just commit changes as usual and the sync handles date updates automatically

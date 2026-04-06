@@ -67,7 +67,7 @@ Maps directly to Printables embed size variants:
 `dev/scripts/utilities/update-3d-models.mjs`
 
 - Fetches all public models from the Printables GraphQL API (no auth required)
-- Rebuilds the entire `.masonry-grid` in API order (newest first) on every run
+- Rebuilds the entire `.masonry-grid` sorted by model ID descending (newest first, matching Printables.com) on every run
 - Preserves any manually set size class overrides per card
 - New models default to `masonry-card--card`
 - Idempotent — safe to run repeatedly
@@ -94,4 +94,3 @@ Originally planned as a `BUILD_INSERT` injection approach. Reconsidered — the 
 ## Notes
 - `.masonry-grid` is intentionally generic — reusable in portfolio, labs, or any future page
 - Aesthetic card styling (borders, shadows, labels) deferred to a future pass
-

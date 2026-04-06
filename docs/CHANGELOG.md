@@ -1,3 +1,15 @@
+# [2.6.4] - 2026-04-06 - 3D Models Utility Sort Order Update
+
+### Changed
+- **3D Models Sorting**: Updated `update-3d-models.mjs` utility to sort by model ID descending (newest first) instead of raw API order, now matching Printables.com website display order
+- **Documentation**: Updated DEVELOPER-NOTES.md and FEATURES/2026-03-18-3d-models-page/README.md to reflect new sort behavior
+
+### Impact
+- **User Experience**: 3D Models page now displays newest uploads first, consistently with Printables.com
+- **Data Integrity**: All existing size class overrides preserved during re-sort
+
+---
+
 # [2.6.3] - 2026-02-10 - Automated Local Scraper & Password Protection Build Flag
 
 ### Added
@@ -119,7 +131,7 @@ No action required. All zoomable images use the classic, reliable drag-to-pan ov
 
 **Note:** This changelog only shows the 10 most recent releases. For older entries, see the [Changelog Archive](./archive/CHANGELOG-archive.md).
 
-**Updated: February 10, 2026**
+**Updated: April 6, 2026**
 
 
 
@@ -397,7 +409,7 @@ No action required. Existing workflows continue to work. Use `--include-last-com
   - **Clean Build Logs**: Removed duplicate audit results and cleaned up legacy swift-build logs
 - **Automated Doc Date Updates**: All Markdown documentation files (`.md`) now have their `Updated:` date automatically set to the last git commit date for each file during the sync-to-public process
   - Sync script automatically detects last commit date using `git log`
-  - Updates `**Updated: February 10, 2026**` line before syncing to public repository
+  - Updates `**Updated: April 6, 2026**` line before syncing to public repository
   - Handles both root-level files and files in `DOCS/` directory
   - Formats dates consistently as "Month Day, YYYY"
   - Fully functional and tested end-to-end

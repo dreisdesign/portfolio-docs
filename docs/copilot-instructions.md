@@ -177,7 +177,7 @@ Use these at the start of each AI response for clarity:
 - Prefer running builds that output to a dedicated `build/`, `public_html/`, or similar directory.
 - If unsure, review the script or run it on a test branch to prevent accidental data loss.
 
-- **Do not search or operate in the `postsforpause.com/` directory.** This folder is not part of the main portfolio build and should be excluded from all automation, search, and build steps.
+
 
 ---
 
